@@ -48,10 +48,10 @@ return packer.startup(function(use)
   use "numToStr/Comment.nvim" -- Easily comment stuff
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
+  use "akinsho/bufferline.nvim"
+  -- use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
   -- use "lukas-reineke/indent-blankline.nvim"
@@ -113,8 +113,8 @@ return packer.startup(function(use)
   ]]
 
   -- tmux navigator
-	use { 'alexghergh/nvim-tmux-navigation', config = function()
-		require'nvim-tmux-navigation'.setup {
+	use { "alexghergh/nvim-tmux-navigation", config = function()
+		require "nvim-tmux-navigation".setup {
 			disable_when_zoomed = true, -- defaults to false
 			keybindings = {
 				left = "<C-h>",
@@ -125,6 +125,15 @@ return packer.startup(function(use)
 				next = "<C-Space>",
 			}
 		}
+		end
+	}
+	
+	-- pretty fold
+	use { "anuvyklack/pretty-fold.nvim", 
+		requires = "anuvyklack/nvim-keymap-amend", -- only for preview
+		config = function()
+			require('pretty-fold').setup()
+			require('pretty-fold.preview').setup()
 		end
 	}
 

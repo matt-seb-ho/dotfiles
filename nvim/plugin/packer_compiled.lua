@@ -159,6 +159,11 @@ _G.packer_plugins = {
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-keymap-amend"] = {
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-keymap-amend",
+    url = "https://github.com/anuvyklack/nvim-keymap-amend"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -170,7 +175,7 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\aup\n<C-k>\tleft\n<C-h>\16last_active\n<C-\\>\tdown\n<C-j>\tnext\14<C-Space>\nright\n<C-l>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
+    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\tnext\14<C-Space>\nright\n<C-l>\tleft\n<C-h>\tdown\n<C-j>\aup\n<C-k>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
     url = "https://github.com/alexghergh/nvim-tmux-navigation"
@@ -210,6 +215,12 @@ _G.packer_plugins = {
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["pretty-fold.nvim"] = {
+    config = { "\27LJ\2\na\0\0\3\0\4\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\24pretty-fold.preview\nsetup\16pretty-fold\frequire\0" },
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/pretty-fold.nvim",
+    url = "https://github.com/anuvyklack/pretty-fold.nvim"
+  },
   ["project.nvim"] = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/project.nvim",
@@ -219,11 +230,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["toggleterm.nvim"] = {
-    loaded = true,
-    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["vim-bbye"] = {
     loaded = true,
@@ -238,9 +244,13 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: pretty-fold.nvim
+time([[Config for pretty-fold.nvim]], true)
+try_loadstring("\27LJ\2\na\0\0\3\0\4\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\24pretty-fold.preview\nsetup\16pretty-fold\frequire\0", "config", "pretty-fold.nvim")
+time([[Config for pretty-fold.nvim]], false)
 -- Config for: nvim-tmux-navigation
 time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\aup\n<C-k>\tleft\n<C-h>\16last_active\n<C-\\>\tdown\n<C-j>\tnext\14<C-Space>\nright\n<C-l>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
+try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\tnext\14<C-Space>\nright\n<C-l>\tleft\n<C-h>\tdown\n<C-j>\aup\n<C-k>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
 time([[Config for nvim-tmux-navigation]], false)
 if should_profile then save_profiles() end
 
