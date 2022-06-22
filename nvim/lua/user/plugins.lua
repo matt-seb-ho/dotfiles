@@ -108,34 +108,62 @@ return packer.startup(function(use)
       -- 3. Provides keybinding to jump into a remote file's parent directory
       ['*'] = require('distant.settings').chip_default()
     }
-  	end
-	}
+    end
+  }
   ]]
 
   -- tmux navigator
-	use { "alexghergh/nvim-tmux-navigation", config = function()
-		require "nvim-tmux-navigation".setup {
-			disable_when_zoomed = true, -- defaults to false
-			keybindings = {
-				left = "<C-h>",
-				down = "<C-j>",
-				up = "<C-k>",
-				right = "<C-l>",
-				last_active = "<C-\\>",
-				next = "<C-Space>",
-			}
-		}
-		end
-	}
-	
-	-- pretty fold
-	use { "anuvyklack/pretty-fold.nvim", 
-		requires = "anuvyklack/nvim-keymap-amend", -- only for preview
-		config = function()
-			require('pretty-fold').setup()
-			require('pretty-fold.preview').setup()
-		end
-	}
+  use { "alexghergh/nvim-tmux-navigation", config = function()
+    require "nvim-tmux-navigation".setup {
+      disable_when_zoomed = true, -- defaults to false
+      keybindings = {
+        left = "<C-h>",
+        down = "<C-j>",
+        up = "<C-k>",
+        right = "<C-l>",
+        last_active = "<C-\\>",
+        next = "<C-Space>",
+      }
+    }
+    end
+  }
+  
+  -- pretty fold
+  use { "anuvyklack/pretty-fold.nvim", 
+    requires = "anuvyklack/nvim-keymap-amend", -- only for preview
+    config = function()
+      require('pretty-fold').setup()
+      require('pretty-fold.preview').setup()
+    end
+  }
+
+  use({
+    'catppuccin/nvim',
+    as = 'catppuccin',
+    config = function()
+      local catppuccin = require('catppuccin')
+      catppuccin.setup({
+        styles = {
+          comments = 'italic',
+          functions = 'NONE',
+          keywords = 'NONE',
+          strings = 'NONE',
+          variables = 'NONE',
+        },
+        integrations = {
+          gitsigns = true,
+          telescope = true,
+          -- dashboard = true,
+          nvimtree = {
+            enabled = true,
+          },
+        },
+      })
+      -- vim.cmd('colorscheme catppuccin')
+    end,
+    commit = 'b66d9a335e2562ca2c4758c12e384a9e7491ff29',
+    -- disable = config.theme ~= 'catppuccin',
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
