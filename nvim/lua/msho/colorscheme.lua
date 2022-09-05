@@ -1,4 +1,4 @@
-local use_gruvbox = false
+local use_gruvbox = true 
 
 if use_gruvbox then
   vim.cmd [[

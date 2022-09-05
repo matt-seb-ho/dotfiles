@@ -51,18 +51,13 @@ return packer.startup(function(use)
   use "moll/vim-bbye"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/bufferline.nvim"
-  -- use "akinsho/toggleterm.nvim"
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"
-  -- use "lukas-reineke/indent-blankline.nvim"
   use "goolord/alpha-nvim"
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
-
-
-  -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  -- use "lunarvim/darkplus.nvim"
+  -- use "akinsho/toggleterm.nvim"
+  -- use "lukas-reineke/indent-blankline.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -95,24 +90,7 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
-  -- Distant: Remote Editing
-  --[[
-  use {
-    'chipsenkbeil/distant.nvim',
-    config = function()
-    require('distant').setup {
-      -- Applies Chip's personal settings to every machine you connect to
-      --
-      -- 1. Ensures that distant servers terminate with no connections
-      -- 2. Provides navigation bindings for remote directories
-      -- 3. Provides keybinding to jump into a remote file's parent directory
-      ['*'] = require('distant.settings').chip_default()
-    }
-    end
-  }
-  ]]
-
-  -- tmux navigator
+  -- Tmux navigator
   use { "alexghergh/nvim-tmux-navigation", config = function()
     require "nvim-tmux-navigation".setup {
       disable_when_zoomed = true, -- defaults to false
@@ -133,9 +111,14 @@ return packer.startup(function(use)
     requires = "anuvyklack/nvim-keymap-amend", -- only for preview
     config = function()
       require('pretty-fold').setup()
-      require('pretty-fold.preview').setup()
     end
   }
+
+  -- ---[ Colorschemes] ------------
+  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  -- use "lunarvim/darkplus.nvim"
+  use "sainnhe/gruvbox-material"
+  use { "ellisonleao/gruvbox.nvim" }
 
   use({
     'catppuccin/nvim',

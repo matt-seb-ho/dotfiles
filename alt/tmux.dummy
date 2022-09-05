@@ -1,0 +1,114 @@
+set -g default-terminal "screen-256color"
+# set -g status-style fg=#f59fa2,bg=colour236
+# setw -g pane-border-style fg=white,bg=colour234
+# setw -g pane-active-border-style fg=colour217,bg=colour234
+# setw -g message-command-style fg=colour234,bg=colour110
+# setw -g message-style fg=colour234,bg=colour110
+set-window-option -g mode-keys vi
+
+# bind h select-pane -L
+# bind j select-pane -D
+# bind k select-pane -U
+# bind l select-pane -R
+
+
+# Smart pane switching with awareness of Vim splits.
+# See: https://github.com/christoomey/vim-tmux-navigator
+is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+    | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h' 'select-pane -L'
+bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j' 'select-pane -D'
+bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k' 'select-pane -U'
+bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l' 'select-pane -R'
+tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+    "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+bind-key -n 'C-Space' if-shell "$is_vim" 'send-keys C-Space' 'select-pane -t:.+'
+
+bind-key -T copy-mode-vi 'C-h' select-pane -L
+bind-key -T copy-mode-vi 'C-j' select-pane -D
+bind-key -T copy-mode-vi 'C-k' select-pane -U
+bind-key -T copy-mode-vi 'C-l' select-pane -R
+bind-key -T copy-mode-vi 'C-\' select-pane -l
+bind-key -T copy-mode-vi 'C-Space' select-pane -t:.+
+
+
+# custom split
+bind-key v split-window -h -p 30
+
+
+
+
+# --------------------------> Catppuccin <---------------------------
+thm_bg="#1e1e28"
+thm_fg="#dadae8"
+thm_cyan="#c2e7f0"
+thm_black="#15121c"
+thm_gray="#332e41"
+thm_magenta="#c6aae8"
+thm_pink="#e5b4e2"
+thm_red="#e38c8f"
+thm_green="#b1e3ad"
+thm_yellow="#ebddaa"
+thm_blue="#a4b9ef"
+thm_orange="#f9c096"
+thm_black4="#575268"
+zero_one="#8bc7c3"
+zero_two="#E64553"
+thm_base="#11111b"
+
+# ----------------------------=== Theme ===--------------------------
+
+# status
+
+
+set -g status-position top
+set -g status "on"
+set -g status-bg "${thm_bg}"
+# set -g status-bg "${thm_base}"
+set -g status-justify "left"
+set -g status-left-length "100"
+set -g status-right-length "100"
+
+# messages
+set -g message-style fg="${thm_cyan}",bg="${thm_gray}",align="centre"
+set -g message-command-style fg="${thm_cyan}",bg="${thm_gray}",align="centre"
+
+# panes
+set -g pane-border-style fg="${thm_gray}"
+set -g pane-active-border-style fg="${thm_blue}"
+
+# windows
+setw -g window-status-activity-style fg="${thm_fg}",bg="${thm_bg}",none
+setw -g window-status-separator ""
+setw -g window-status-style fg="${thm_fg}",bg="${thm_bg}",none
+
+# --------=== Statusline
+
+set -g status-left ""
+# set -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S "
+# set -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics][#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray] #{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S "
+# set-option -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,noitalics]#(tmux-mem-cpu-load) "
+# set-option -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,noitalics]#(tmux-mem-cpu-load) "
+# set-option -ag status-right " #[fg=$zero_two,bg=$thm_bg]%a%l:%M:%S %p#[default] #[fg=$zero_one]%Y-%m-%d"
+# set-option -ag status-right " #[fg=$zero_two]%a%l:%M:%S %p#[default] #[fg=$zero_one]%Y-%m-%d"
+# set -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics] #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red],#[fg=$thm_green]}#[bg=$thm_gray]#{?client_prefix,#[bg=$thm_red],#[bg=$thm_green]}#[fg=$thm_bg] #[fg=$thm_fg,bg=$thm_gray] #S "
+
+set-option -g status-right "#[fg=$thm_pink,bg=$thm_bg,nobold,noitalics]#(tmux-mem-cpu-load) "
+set-option -ag status-right " #[fg=$zero_two,bg=$thm_bg]%a%l:%M:%S %p#[default] #[fg=$zero_one]%Y-%m-%d"
+# set-option -ag status-right " #[fg=$zero_two]%a%l:%M:%S %p#[default] #[fg=$zero_one]%Y-%m-%d"
+
+
+# current_dir
+setw -g window-status-format "#[fg=$thm_bg,bg=$thm_blue] #I #[fg=$thm_fg,bg=$thm_gray] #{b:pane_current_path} "
+setw -g window-status-current-format "#[fg=$thm_bg,bg=$thm_orange] #I #[fg=$thm_fg,bg=$thm_bg] #{b:pane_current_path} "
+
+# parent_dir/current_dir
+# setw -g window-status-format "#[fg=colour232,bg=colour111] #I #[fg=colour222,bg=colour235] #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) "
+# setw -g window-status-current-format "#[fg=colour232,bg=colour208] #I #[fg=colour255,bg=colour237] #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) "
+
+# --------=== Modes
+setw -g clock-mode-colour "${thm_blue}"
+setw -g mode-style "fg=${thm_pink} bg=${thm_black4} bold"

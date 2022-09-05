@@ -95,7 +95,7 @@ _G.packer_plugins = {
     url = "https://github.com/akinsho/bufferline.nvim"
   },
   catppuccin = {
-    config = { "\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14functions\tNONE\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0" },
+    config = { "\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0" },
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -134,6 +134,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
+  ["gruvbox-material"] = {
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/gruvbox-material",
+    url = "https://github.com/sainnhe/gruvbox-material"
+  },
+  ["gruvbox.nvim"] = {
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
+    url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   ["impatient.nvim"] = {
     loaded = true,
@@ -181,7 +191,7 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tleft\n<C-h>\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
+    config = { "\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
     url = "https://github.com/alexghergh/nvim-tmux-navigation"
@@ -222,7 +232,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["pretty-fold.nvim"] = {
-    config = { "\27LJ\2\na\0\0\3\0\4\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\24pretty-fold.preview\nsetup\16pretty-fold\frequire\0" },
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16pretty-fold\frequire\0" },
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/pretty-fold.nvim",
     url = "https://github.com/anuvyklack/pretty-fold.nvim"
@@ -252,16 +262,16 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: catppuccin
 time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14functions\tNONE\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
+try_loadstring("\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
 time([[Config for catppuccin]], false)
--- Config for: pretty-fold.nvim
-time([[Config for pretty-fold.nvim]], true)
-try_loadstring("\27LJ\2\na\0\0\3\0\4\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\24pretty-fold.preview\nsetup\16pretty-fold\frequire\0", "config", "pretty-fold.nvim")
-time([[Config for pretty-fold.nvim]], false)
 -- Config for: nvim-tmux-navigation
 time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tleft\n<C-h>\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
+try_loadstring("\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
 time([[Config for nvim-tmux-navigation]], false)
+-- Config for: pretty-fold.nvim
+time([[Config for pretty-fold.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16pretty-fold\frequire\0", "config", "pretty-fold.nvim")
+time([[Config for pretty-fold.nvim]], false)
 if should_profile then save_profiles() end
 
 end)
