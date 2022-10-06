@@ -57,7 +57,7 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
   -- use "akinsho/toggleterm.nvim"
-  -- use "lukas-reineke/indent-blankline.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -91,7 +91,7 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
 
   -- Tmux navigator
-  use { "alexghergh/nvim-tmux-navigation", config = function()
+  --[[ use { "alexghergh/nvim-tmux-navigation", config = function()
     require "nvim-tmux-navigation".setup {
       disable_when_zoomed = true, -- defaults to false
       keybindings = {
@@ -104,7 +104,10 @@ return packer.startup(function(use)
       }
     }
     end
-  }
+  } ]]
+
+  -- Kitty navigator
+  use "knubie/vim-kitty-navigator"
   
   -- pretty fold
   use { "anuvyklack/pretty-fold.nvim", 

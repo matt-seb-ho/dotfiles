@@ -71,3 +71,5 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>R", ":NvimTreeRefresh<cr>", opts)
 
+-- Indentline Guides--
+keymap("n", "<leader>i", ":IndentBlanklineToggle<cr>", opts)

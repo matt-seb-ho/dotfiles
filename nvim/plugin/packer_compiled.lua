@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -95,7 +100,7 @@ _G.packer_plugins = {
     url = "https://github.com/akinsho/bufferline.nvim"
   },
   catppuccin = {
-    config = { "\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0" },
+    config = { "\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\rcomments\vitalic\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\nsetup\15catppuccin\frequire\0" },
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
@@ -150,6 +155,11 @@ _G.packer_plugins = {
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/impatient.nvim",
     url = "https://github.com/lewis6991/impatient.nvim"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -189,12 +199,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
-    loaded = true,
-    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
-    url = "https://github.com/alexghergh/nvim-tmux-navigation"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -252,6 +256,11 @@ _G.packer_plugins = {
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
   },
+  ["vim-kitty-navigator"] = {
+    loaded = true,
+    path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/vim-kitty-navigator",
+    url = "https://github.com/knubie/vim-kitty-navigator"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/Users/matthewho/.local/share/nvim/site/pack/packer/start/which-key.nvim",
@@ -260,18 +269,21 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: catppuccin
-time([[Config for catppuccin]], true)
-try_loadstring("\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\rcomments\vitalic\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
-time([[Config for catppuccin]], false)
--- Config for: nvim-tmux-navigation
-time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\n¡\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tnext\14<C-Space>\16last_active\n<C-\\>\nright\n<C-l>\aup\n<C-k>\tdown\n<C-j>\tleft\n<C-h>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
-time([[Config for nvim-tmux-navigation]], false)
 -- Config for: pretty-fold.nvim
 time([[Config for pretty-fold.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16pretty-fold\frequire\0", "config", "pretty-fold.nvim")
 time([[Config for pretty-fold.nvim]], false)
+-- Config for: catppuccin
+time([[Config for catppuccin]], true)
+try_loadstring("\27LJ\2\n‰\1\0\0\6\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\4=\4\t\3B\1\2\1K\0\1\0\17integrations\rnvimtree\1\0\1\fenabled\2\1\0\2\14telescope\2\rgitsigns\2\vstyles\1\0\0\1\0\5\rcomments\vitalic\14variables\tNONE\fstrings\tNONE\rkeywords\tNONE\14functions\tNONE\nsetup\15catppuccin\frequire\0", "config", "catppuccin")
+time([[Config for catppuccin]], false)
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)

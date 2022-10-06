@@ -44,10 +44,13 @@ local setup = {
     scroll_up = "<c-u>", -- binding to scroll up inside the popup
   },
   window = {
-    border = "rounded", -- none, single, double, shadow
+    --[[ border = "rounded", -- none, single, double, shadow ]]
+    border = "shadow", -- none, single, double, shadow
     position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+    --[[ margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left] ]]
+    margin = { 1, 1, 1, 1 }, -- extra window margin [top, right, bottom, left]
+    --[[ padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left] ]]
+    padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
     winblend = 0,
   },
   layout = {
@@ -90,6 +93,7 @@ local mappings = {
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["i"] = { "<cmd>IndentBlanklineToggle<CR>", "Toggle Indent Guides" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     -- "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{})<cr>",
@@ -130,7 +134,6 @@ local mappings = {
       "Diff",
     },
   },
-
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
