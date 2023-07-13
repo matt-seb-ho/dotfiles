@@ -1,0 +1,26 @@
+{
+  "settingsVersion": "1.67.4",
+  "exclusionRules": [
+    {
+      "pattern": "https?://mail.google.com/*",
+      "passKeys": ""
+    }
+  ],
+  "filterLinkHints": false,
+  "waitForEnterForFilteredHints": true,
+  "hideHud": true,
+  "keyMappings": "# Insert your preferred key mappings here.\n# remove vomnibar\nunmap o\nunmap O\nunmap b\nunmap B\n# remove vimium find (I think browser find is sufficient)\nunmap /\nunmap n\nunmap N\n# arc doesn't play well with empty new tab\nunmap t\n# I don't understand the point of vimium visual mode\nunmap v",
+  "linkHintCharacters": "sadfjklewcmpgh",
+  "linkHintNumbers": "0123456789",
+  "newTabUrl": "about:newtab",
+  "nextPatterns": "next,more,newer,>,›,→,»,≫,>>",
+  "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
+  "regexFindMode": false,
+  "ignoreKeyboardLayout": false,
+  "scrollStepSize": 60,
+  "smoothScroll": true,
+  "grabBackFocus": false,
+  "searchEngines": "w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\n\n# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\n# g: https://www.google.com/search?q=%s Google\n# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...\n# y: https://www.youtube.com/results?search_query=%s Youtube\n# gm: https://www.google.com/maps?q=%s Google maps\n# b: https://www.bing.com/search?q=%s Bing\n# d: https://duckduckgo.com/?q=%s DuckDuckGo\n# az: https://www.amazon.com/s/?field-keywords=%s Amazon\n# qw: https://www.qwant.com/?q=%s Qwant",
+  "searchUrl": "https://www.google.com/search?q=",
+  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\n/* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542)); */\n/* background: #E9E5E1; */\n/* background: #202124; */\n/* blue */\n/* background: #AEECEF; */\n/* background: #F7F1E4; */\nbackground: #EBADAD;\nborder: none;\npadding: 1px;\n/* border: 1px solid #E3BE23; */\n/* border: 1px solid #606368; */\n}\n\n.vimiumHintMarker > .vimiumReset { \n    text-transform: lowercase !important; \n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\nfont-family: 'Major Mono Display';\n/* font-family: 'Silkscreen'; */\n/* color: black; */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\ntext-shadow: none;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+}
