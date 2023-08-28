@@ -21,8 +21,8 @@
 "function.macro" = "green" # formerly aqua
 "tag" = "yellow"
 # "namespace" = "aqua" # original
-"namespace" = "blue"
-# "namespace" = "fg0"
+# "namespace" = "blue"
+"namespace" = "fg0"
 "attribute" = "aqua"
 "constructor" = "yellow"
 "module" = "blue"
@@ -44,7 +44,7 @@
 "markup.raw" = "green"
 
 "diff.plus" = "green"
-"diff.delta" = "orange"
+"diff.delta" = "blue"
 "diff.minus" = "red"
 
 "ui.background" = { bg = "bg0" }
