@@ -1,0 +1,43 @@
+{
+    "workbench.colorTheme": "Rosé Pine Moon",
+    "editor.lineNumbers": "relative",
+    "workbench.activityBar.visible": false,
+    "vim.leader": "<space>",
+    "editor.minimap.enabled": false,
+    "git.decorations.enabled": false,
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "b"],
+            "commands": [
+                "workbench.action.showAllEditors",
+            ],
+            "silent": true,
+        },
+        {
+            "before": ["<leader>", "f"],
+            "commands": [
+                "workbench.action.quickOpen",
+            ],
+            "silent": true,
+        },
+    ],
+    "workbench.quickOpen.closeOnFocusLost": false
+}
