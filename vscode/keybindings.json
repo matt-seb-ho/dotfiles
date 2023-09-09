@@ -1,4 +1,4 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
     {
         "key": "cmd+k b",
@@ -30,5 +30,105 @@
         // replacement 2 (slow)
         // "command": "list.focusUp",
         "when": "inQuickOpen"
+    },
+    {
+        "key": "shift+escape",
+        "command": "notebook.cell.quitEdit",
+        "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible"
+    },
+    {
+        "key": "escape",
+        "command": "-notebook.cell.quitEdit",
+        "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible"
+    },
+    {
+        "key": "I",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.edit"
+    },
+    {
+        "key": "K",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "list.focusUp"
+    },
+    {
+        "key": "J",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "list.focusDown"
+    },
+    {
+        "key": "G G",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "list.focusFirst"
+    },
+    {
+        "key": "shift+G",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "list.focusLast"
+    },
+    {
+        "key": "D D",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.delete"
+    },
+    {
+        "key": "shift+O",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.insertCodeCellAboveAndFocusContainer"
+    },
+    {
+        "key": "O",
+        "when": "listFocus && notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.insertCodeCellBelowAndFocusContainer"
+    },
+    {
+        "key": "Y",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.copy"
+    },
+    {
+        "key": "X",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.cut"
+    },
+    {
+        "key": "P",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "notebook.cell.paste"
+    },
+    {
+        "key": "ctrl+enter",
+        "when": "editorTextFocus && inputFocus && notebookEditorFocused || notebookCellListFocused",
+        "command": "notebook.cell.executeAndFocusContainer"
+    },
+    {
+        "key": "shift+enter",
+        "when": "editorTextFocus && inputFocus && notebookEditorFocused || notebookCellListFocused && notebookCellType == 'code'",
+        "command": "notebook.cell.executeAndSelectBelow"
+    },
+    {
+        "key": "U",
+        "when": "notebookEditorFocused && !inputFocus",
+        "command": "undo"
+    },
+    {
+        "key": "space f",
+        "command": "workbench.action.quickOpen",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "space b",
+        "command": "workbench.action.showAllEditors",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+w l",
+        "command": "workbench.action.focusRightGroup",
+        "when": "notebookEditorFocused",
+    },
+    {
+        "key": "ctrl+w h",
+        "command": "workbench.action.focusLeftGroup",
+        "when": "notebookEditorFocused",
     }
 ]

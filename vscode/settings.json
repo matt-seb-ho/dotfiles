@@ -1,43 +1,55 @@
 {
-    "workbench.colorTheme": "Rosé Pine Moon",
-    "editor.lineNumbers": "relative",
-    "workbench.activityBar.visible": false,
-    "vim.leader": "<space>",
-    "editor.minimap.enabled": false,
+    "window.commandCenter": false,
     "git.decorations.enabled": false,
+    "workbench.colorTheme": "Rosé Pine Dawn",
+    "workbench.activityBar.visible": false,
+    "workbench.startupEditor": "none",
+    "workbench.quickOpen.closeOnFocusLost": false,
+    "editor.lineNumbers": "relative",
+    "editor.minimap.enabled": false,
+    "vim.leader": "<space>",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+          "before": ["g", "H"],
+          "commands": [{ "command": "editor.action.showDefinitionPreviewHover" }]
+        }
+    ],
     "vim.visualModeKeyBindings": [
-        {
-            "before": [
-                ">"
-            ],
-            "commands": [
-                "editor.action.indentLines"
-            ]
-        },
-        {
-            "before": [
-                "<"
-            ],
-            "commands": [
-                "editor.action.outdentLines"
-            ]
-        },
-    ],
-    "vim.normalModeKeyBindings": [
-        {
-            "before": ["<leader>", "b"],
-            "commands": [
-                "workbench.action.showAllEditors",
-            ],
-            "silent": true,
-        },
-        {
-            "before": ["<leader>", "f"],
-            "commands": [
-                "workbench.action.quickOpen",
-            ],
-            "silent": true,
-        },
-    ],
-    "workbench.quickOpen.closeOnFocusLost": false
+      {
+          "before": [
+              ">"
+          ],
+          "commands": [
+              "editor.action.indentLines"
+          ]
+      },
+      {
+          "before": [
+              "<"
+          ],
+          "commands": [
+              "editor.action.outdentLines"
+          ]
+      },
+  ],
+  "vim.normalModeKeyBindings": [
+      {
+          "before": ["<leader>", "b"],
+          "commands": [
+              "workbench.action.showAllEditors",
+          ],
+          "silent": true,
+      },
+      {
+          "before": ["<leader>", "f"],
+          "commands": [
+              "workbench.action.quickOpen",
+          ],
+          "silent": true,
+      },
+],
+"remote.SSH.connectTimeout": 180,
+"remote.SSH.remotePlatform": {
+    "nlp": "linux"
+},
 }
