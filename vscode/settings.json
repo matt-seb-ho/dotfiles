@@ -52,4 +52,7 @@
 "remote.SSH.remotePlatform": {
     "nlp": "linux"
 },
+"zenMode.fullScreen": false,
+"zenMode.hideLineNumbers": false,
+"zenMode.hideStatusBar": false,
 }
