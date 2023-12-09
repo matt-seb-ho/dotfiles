@@ -2,7 +2,6 @@
     "window.commandCenter": false,
     "git.decorations.enabled": false,
     "workbench.colorTheme": "Rosé Pine Dawn",
-    "workbench.activityBar.visible": false,
     "workbench.startupEditor": "none",
     "workbench.quickOpen.closeOnFocusLost": false,
     "editor.lineNumbers": "relative",
@@ -36,6 +35,13 @@
       {
           "before": ["<leader>", "b"],
           "commands": [
+              "workbench.action.showEditorsInActiveGroup",
+          ],
+          "silent": true,
+      },
+      {
+          "before": ["<leader>", "B"],
+          "commands": [
               "workbench.action.showAllEditors",
           ],
           "silent": true,
@@ -50,9 +56,26 @@
 ],
 "remote.SSH.connectTimeout": 180,
 "remote.SSH.remotePlatform": {
-    "nlp": "linux"
+    "nlp": "linux",
+    "csil": "linux"
 },
 "zenMode.fullScreen": false,
 "zenMode.hideLineNumbers": false,
 "zenMode.hideStatusBar": false,
+"remote.SSH.useLocalServer": false,
+"notebook.lineNumbers": "on",
+"files.simpleDialog.enable": true,
+"terminal.integrated.profiles.linux": {
+    "fish": {
+        "path": "/usr/bin/fish"
+    }
+},
+"terminal.integrated.defaultProfile.linux": "fish",
+"workbench.activityBar.location": "hidden",
+"github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+},
 }

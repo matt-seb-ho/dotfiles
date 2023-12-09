@@ -1,7 +1,7 @@
 // Place your key bindings in this file to override the defaults
 [
     {
-        "key": "cmd+k b",
+        "key": "cmd+k shift+b",
         "command": "workbench.action.showAllEditors"
     },
     {
@@ -118,6 +118,11 @@
     },
     {
         "key": "space b",
+        "command": "workbench.action.showEditorsInActiveGroup",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "space shift+b",
         "command": "workbench.action.showAllEditors",
         "when": "notebookEditorFocused && !inputFocus"
     },
@@ -135,5 +140,44 @@
         "key": "escape",
         "command": "-notebook.cell.quitEdit",
         "when": "inputFocus && notebookEditorFocused && vim.active && !editorHasSelection && !editorHoverVisible && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "tab",
+        "command": "selectNextQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+    },
+        {
+        "key": "shift+tab",
+        "command": "selectPrevQuickFix",
+        "when": "editorFocus && quickFixWidgetVisible"
+    },
+        {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+        {
+        "key": "shift+tab",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "shift+cmd+enter",
+        "command": "-notebook.cell.insertCodeCellAbove",
+        "when": "notebookCellListFocused && !inputFocus"
+    },
+    {
+        "key": "cmd+enter",
+        "command": "-notebook.cell.insertCodeCellBelow",
+        "when": "notebookCellListFocused && !inputFocus"
+    },
+    {
+        "key": "cmd+k b",
+        "command": "workbench.action.showEditorsInActiveGroup"
     }
 ]
