@@ -25,7 +25,8 @@ REFRESH_TIME = 15
 
 icon_fg = as_rgb(color_as_int(Color(255, 250, 205)))
 icon_bg = as_rgb(color_as_int(Color(47, 61, 68)))
-# OR icon_bg = as_rgb(0x2f3d44)
+# icon_bg = as_rgb(0x2f3d44)
+# icon_bg = as_rgb(0x1D2021)
 bat_text_color = as_rgb(0x999F93)
 clock_color = as_rgb(0x7FBBB3)
 dnd_color = as_rgb(0x465258)
@@ -54,8 +55,8 @@ def _draw_icon(screen: Screen, index: int) -> int:
         return 0
 
     fg, bg = screen.cursor.fg, screen.cursor.bg
-    screen.cursor.fg = icon_fg
-    screen.cursor.bg = icon_bg
+    # screen.cursor.fg = icon_fg
+    # screen.cursor.bg = icon_bg
     screen.draw(ICON)
     screen.cursor.fg, screen.cursor.bg = fg, bg
     screen.cursor.x = len(ICON)
