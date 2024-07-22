@@ -1,0 +1,1 @@
+--header=fuzzyfinder --header-first --info=inline-right --prompt=_ --marker=+ --margin 1 --color=bg+:#3c3836,preview-bg:#1D2021,preview-border:#1D2021,bg:#18191A,border:#18191A,spinner:#fb4934,hl:#928374,fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#fb4934,fg+:#ebdbb2,marker:#ebdbb2,prompt:#fb4934,hl+:#fb4934,gutter:#18191A
