@@ -1,7 +1,7 @@
 {
 	"name": "Vimium C",
-	"@time": "12/21/2024, 10:10:19 PM",
-	"time": 1734847819436,
+	"@time": "12/31/2024, 10:40:13 AM",
+	"time": 1735670413847,
 	"environment": {
 		"extension": "1.99.997",
 		"platform": "mac",
@@ -31,14 +31,13 @@
 	"userDefinedCss": [
 		"/* ui */",
 		".LH {",
-		"    background: #faf4ed;",
-		"    border: none;",
+		"    background: #faf4ed !important;",
+		"    border: none !important;",
 		"    border-bottom: 2px solid #ea9a97;",
 		"    padding: 1px;",
 		"    padding-left: 5px;",
 		"    padding-right: 5px;",
 		"",
-		"    /* text customization */",
 		"    font-family: Monaco;",
 		"    color: #ea9a97;",
 		"    font-size: 11px;",
