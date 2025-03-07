@@ -7,21 +7,34 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
+# <default>
 # set $mod Mod4
+# <msho>
 set $mod Mod1
 set $meta Mod4
+set $ctrl Control
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
+# <default>
 # set $term foot
+# <msho>
 set $term kitty
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
+
+# Theme Colors (Rose Pine Dawn)
+set $pine_color #31748f
+set $text_color #e0def4
+set $love_color #eb6f92
 
 include /etc/sway/config-vars.d/*
 
@@ -30,10 +43,13 @@ include /etc/sway/config-vars.d/*
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # wallpaper
-output * bg /home/msho/misc/wallpapers/sky_telephone_pole.jpg fill
+# <thinkpad>
+# output * bg /home/msho/misc/wallpapers/sunrise_cloud.jpg fill
+# <jagaimo>
+output * bg /home/msho/misc/wallpapers/gracile2.jpg fill
 # display scaling for monitor
 output DP-1 scale 1.6
-#
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -74,6 +90,9 @@ exec swayidle -w \
 input type:pointer {
     natural_scroll enabled
 }
+input type:touchpad {
+    natural_scroll enabled
+}
 
 ### Key bindings
 #
@@ -84,6 +103,7 @@ input type:pointer {
 
     # Kill focused window
     bindsym $mod+Shift+q kill
+    bindsym $meta+Shift+w kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -214,11 +234,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# msho theming
-set $pine_color #31748f
-set $text_color #e0def4
-# class                 border, bground, text
-client.focused          $pine_color $pine_color $text_color
 
 #
 # Status Bar:
@@ -229,8 +244,10 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
+    # <thinkpad>
+    # status_command /home/msho/misc/status_bar_setup/status_bar.sh
+    # <jagaimo>
     status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-    # status_command i3blocks
 
     colors {
         # default
@@ -241,34 +258,63 @@ bar {
         statusline #e0def4
         background #1f1d2e
         focused_workspace $pine_color $pine_color $text_color
+	    urgent_workspace $love_color $love_color $text_color
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 
 }
 
-# msho addition!
-exec_always keyd-application-mapper -d
-
-# Notification Daemon
-exec swaync
-
-# Toggle control center
+### EXTRA KEYBINDS
+## workspace management
+bindsym $mod+tab          workspace back_and_forth
+bindsym $meta+tab         workspace back_and_forth
+bindsym $meta+grave       workspace next
+bindsym $meta+Shift+grave workspace prev
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move    workspace to output left
+## notification center (toggle)
 bindsym $mod+Shift+n exec swaync-client -t -sw
-
-# Volume control
+## volume control
+# <thinkpad>
+# bindsym XF86AudioMute exec pamixer -t
+# bindsym XF86AudioRaiseVolume exec pamixer -i 5
+# bindsym XF86AudioLowerVolume exec pamixer -d 5
+# <jagaimo>
 bindsym $meta+F11 exec pamixer -d 5
 bindsym $meta+F12 exec pamixer -i 5
-# toggle mute
 bindsym $meta+F10 exec pamixer -t
-
-# Media control
+## media control (play/pause/next/previous song) <jagaimo>
 bindsym $meta+F6 exec playerctl previous
 bindsym $meta+F7 exec playerctl play-pause
 bindsym $meta+F8 exec playerctl next
-
-# Screenshot
+bindsym $meta+Shift+f11 exec playerctl volume 0.1-
+bindsym $meta+Shift+f12 exec playerctl volume 0.1+
+## screenshot
 # https://www.reddit.com/r/swaywm/comments/bw9m52/how_to_take_a_screenshot_of_currently_active/
 bindsym $meta+Shift+3 exec /home/msho/misc/screenshot_setup/screenshot.sh
+bindsym $meta+Shift+4 exec /home/msho/misc/screenshot_setup/screenshot_region.sh
+## logout on keybind
+bindsym $meta+$ctrl+q exec swaylock
 
+### DAEMONS
+## app specific keybinds (e.g. terminal copy paste)
+exec_always keyd-application-mapper -d
+## notification daemon
+exec swaync
+## gnome keyring
+# from github link
+# exec /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
+# from actual installation
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec gnome-keyring-daemon --start --components secrets
+
+### AESTHETICS
+# remove titlebar
+default_border pixel 1
+# only show borders when needed (multiple windows in workspace)
+smart_borders on
+# class border, bground, text
+client.urgent  $love_color $love_color $text_color
+client.focused $love_color $love_color $text_color
 
 include /etc/sway/config.d/*
