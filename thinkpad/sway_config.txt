@@ -29,7 +29,10 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# set $menu dmenu_path | dmenu | xargs swaymsg exec --
+# 2025.10.21: upgraded to debian 13 trixie
+# replaced dmenu with wmenu
+set $menu wmenu-run
 
 # Theme Colors (Rose Pine Dawn)
 set $pine_color #31748f
@@ -44,9 +47,11 @@ include /etc/sway/config-vars.d/*
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # wallpaper
 # <thinkpad>
+# **NOTE**: moved to the bottom since config.d/ contains a script that loads the default sway wallpaper
 # output * bg /home/msho/misc/wallpapers/sunrise_cloud.jpg fill
+# output * bg /home/msho/misc/wallpapers/street.png fill
 # <jagaimo>
-output * bg /home/msho/misc/wallpapers/gracile2.jpg fill
+# output * bg /home/msho/misc/wallpapers/gracile2.jpg fill
 # display scaling for monitor
 output DP-1 scale 1.6
 
@@ -68,7 +73,8 @@ output DP-1 scale 1.6
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep 'swaylock -f -c 000000' \
+         for_window [app_id="firefox-esr"] inhibit_idle fullscreen`
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -246,20 +252,35 @@ bar {
     # The default just shows the current date and time.
     # <thinkpad>
     # status_command /home/msho/misc/status_bar_setup/status_bar.sh
+    status_command /home/msho/misc/status_bar_setup/status_bar_with_volume.sh
     # <jagaimo>
-    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
 
+    # colors {
+    #     # default
+    #     # statusline #ffffff
+    #     # background #323232
+    #     # inactive_workspace #32323200 #32323200 #5c5c5c
+    # }
     colors {
-        # default
-        # statusline #ffffff
-        # background #323232
-        # inactive_workspace #32323200 #32323200 #5c5c5c
-        # msho rose pine
-        statusline #e0def4
-        background #1f1d2e
-        focused_workspace $pine_color $pine_color $text_color
-	    urgent_workspace $love_color $love_color $text_color
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        # Rosé Pine Dawn Theme
+
+        # Bar background and statusline
+        background         #faf4ed
+        statusline         #575279
+        separator          #797593
+
+        # Focused output (monitor)
+        focused_background         #f2e9e1
+        focused_statusline         #575279
+        focused_separator          #797593
+
+        # Workspaces
+        focused_workspace          #56949f #56949f #fffaf3
+        active_workspace           #cecacd #f2e9e1 #575279
+        inactive_workspace         #fffaf3 #fffaf3 #9893a5
+        urgent_workspace           #b4637a #b4637a #fffaf3
+        binding_mode               #ea9d34 #fffaf3 #575279
     }
 
 }
@@ -274,21 +295,24 @@ bindsym $mod+greater move workspace to output right
 bindsym $mod+less move    workspace to output left
 ## notification center (toggle)
 bindsym $mod+Shift+n exec swaync-client -t -sw
+## brightness control <thinkpad>
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 ## volume control
 # <thinkpad>
-# bindsym XF86AudioMute exec pamixer -t
-# bindsym XF86AudioRaiseVolume exec pamixer -i 5
-# bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
 # <jagaimo>
-bindsym $meta+F11 exec pamixer -d 5
-bindsym $meta+F12 exec pamixer -i 5
-bindsym $meta+F10 exec pamixer -t
+# bindsym $meta+F11 exec pamixer -d 5
+# bindsym $meta+F12 exec pamixer -i 5
+# bindsym $meta+F10 exec pamixer -t
 ## media control (play/pause/next/previous song) <jagaimo>
-bindsym $meta+F6 exec playerctl previous
-bindsym $meta+F7 exec playerctl play-pause
-bindsym $meta+F8 exec playerctl next
-bindsym $meta+Shift+f11 exec playerctl volume 0.1-
-bindsym $meta+Shift+f12 exec playerctl volume 0.1+
+# bindsym $meta+F6 exec playerctl previous
+# bindsym $meta+F7 exec playerctl play-pause
+# bindsym $meta+F8 exec playerctl next
+# bindsym $meta+Shift+f11 exec playerctl volume 0.1-
+# bindsym $meta+Shift+f12 exec playerctl volume 0.1+
 ## screenshot
 # https://www.reddit.com/r/swaywm/comments/bw9m52/how_to_take_a_screenshot_of_currently_active/
 bindsym $meta+Shift+3 exec /home/msho/misc/screenshot_setup/screenshot.sh
@@ -305,7 +329,8 @@ exec swaync
 # from github link
 # exec /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1
 # from actual installation
-exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+# exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id lxpolkit
 exec gnome-keyring-daemon --start --components secrets
 
 ### AESTHETICS
@@ -318,3 +343,7 @@ client.urgent  $love_color $love_color $text_color
 client.focused $love_color $love_color $text_color
 
 include /etc/sway/config.d/*
+
+# wallpaper 
+# (after the include because config.d/ contains a config that sets the wallpaper to the default sway one)
+output * bg /home/msho/misc/wallpapers/crane.png fill
