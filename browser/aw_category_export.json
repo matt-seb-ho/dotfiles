@@ -1,0 +1,308 @@
+{
+  "categories": [
+    {
+      "data": {
+        "color": "#286983",
+        "score": 10
+      },
+      "id": 0,
+      "name": [
+        "Work"
+      ],
+      "rule": {
+        "type": "none"
+      },
+      "name_pretty": "Work",
+      "subname": "Work",
+      "parent": null,
+      "depth": 0
+    },
+    {
+      "data": {
+        "color": "#3e8fb0"
+      },
+      "id": 1,
+      "name": [
+        "Work",
+        "Code"
+      ],
+      "rule": {
+        "regex": "Code|kitty|vim|tmux|ssh",
+        "type": "regex"
+      },
+      "name_pretty": "Work>Code",
+      "subname": "Code",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#f85552"
+      },
+      "id": 2,
+      "name": [
+        "Media"
+      ],
+      "rule": {
+        "type": "none"
+      },
+      "name_pretty": "Media",
+      "subname": "Media",
+      "parent": null,
+      "depth": 0
+    },
+    {
+      "data": {},
+      "id": 3,
+      "name": [
+        "Media",
+        "Video"
+      ],
+      "rule": {
+        "regex": "YouTube",
+        "type": "regex"
+      },
+      "name_pretty": "Media>Video",
+      "subname": "Video",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {},
+      "id": 4,
+      "name": [
+        "Media",
+        "Social Media"
+      ],
+      "rule": {
+        "ignore_case": true,
+        "regex": "reddit|Facebook|Twitter|Instagram",
+        "type": "regex"
+      },
+      "name_pretty": "Media>Social Media",
+      "subname": "Social Media",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {},
+      "id": 5,
+      "name": [
+        "Media",
+        "Music"
+      ],
+      "rule": {
+        "ignore_case": true,
+        "regex": "Spotify|Music",
+        "type": "regex"
+      },
+      "name_pretty": "Media>Music",
+      "subname": "Music",
+      "parent": [
+        "Media"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#f2e9e1"
+      },
+      "id": 6,
+      "name": [
+        "Comms"
+      ],
+      "rule": {
+        "type": "none"
+      },
+      "name_pretty": "Comms",
+      "subname": "Comms",
+      "parent": null,
+      "depth": 0
+    },
+    {
+      "data": {
+        "color": "#F2D0A4"
+      },
+      "id": 7,
+      "name": [
+        "Comms",
+        "Work Comms"
+      ],
+      "rule": {
+        "regex": "Slack",
+        "type": "regex"
+      },
+      "name_pretty": "Comms>Work Comms",
+      "subname": "Work Comms",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#B2BD7E"
+      },
+      "id": 8,
+      "name": [
+        "Comms",
+        "Email"
+      ],
+      "rule": {
+        "ignore_case": true,
+        "regex": "Gmail|UC San Diego Mail",
+        "type": "regex"
+      },
+      "name_pretty": "Comms>Email",
+      "subname": "Email",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#f2e9e1"
+      },
+      "id": 9,
+      "name": [
+        "Uncategorized"
+      ],
+      "rule": {
+        "type": "none"
+      },
+      "name_pretty": "Uncategorized",
+      "subname": "Uncategorized",
+      "parent": null,
+      "depth": 0
+    },
+    {
+      "data": {
+        "color": "#ea9a97"
+      },
+      "id": 10,
+      "name": [
+        "Work",
+        "Zen"
+      ],
+      "rule": {
+        "regex": "Zen",
+        "type": "regex"
+      },
+      "name_pretty": "Work>Zen",
+      "subname": "Zen",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#c4a7e7"
+      },
+      "id": 11,
+      "name": [
+        "Work",
+        "LLM"
+      ],
+      "rule": {
+        "regex": "ChatGPT|Deepseek|Claude",
+        "type": "regex"
+      },
+      "name_pretty": "Work>LLM",
+      "subname": "LLM",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#f6c177"
+      },
+      "id": 12,
+      "name": [
+        "Work",
+        "Obsidian"
+      ],
+      "rule": {
+        "regex": "Obsidian",
+        "type": "regex"
+      },
+      "name_pretty": "Work>Obsidian",
+      "subname": "Obsidian",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#eb6f92"
+      },
+      "id": 13,
+      "name": [
+        "Work",
+        "Reading"
+      ],
+      "rule": {
+        "ignore_case": true,
+        "regex": "Books|Sioyek|Preview|arxiv|pdf|ai2 asta|semantic scholar",
+        "type": "regex"
+      },
+      "name_pretty": "Work>Reading",
+      "subname": "Reading",
+      "parent": [
+        "Work"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#749C75"
+      },
+      "id": 14,
+      "name": [
+        "Comms",
+        "Meeting"
+      ],
+      "rule": {
+        "ignore_case": true,
+        "regex": "Zoom|Teams",
+        "type": "regex"
+      },
+      "name_pretty": "Comms>Meeting",
+      "subname": "Meeting",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1
+    },
+    {
+      "data": {
+        "color": "#8D86C9"
+      },
+      "id": 15,
+      "name": [
+        "Comms",
+        "Personal Comms"
+      ],
+      "rule": {
+        "regex": "Messages|Discord|WhatsApp",
+        "type": "regex"
+      },
+      "name_pretty": "Comms>Personal Comms",
+      "subname": "Personal Comms",
+      "parent": [
+        "Comms"
+      ],
+      "depth": 1
+    }
+  ]
+}
