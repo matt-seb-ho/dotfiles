@@ -13,9 +13,10 @@ An i3/sway-style cheat sheet for this komorebi setup (3 monitors, 9 global works
 - **Workspaces are unique and global**, named `1`–`9`. They're addressed **by name**, so
   `alt + N` always jumps to workspace `N` no matter which monitor it currently lives on —
   exactly like i3.
-- **Anchor workspaces** `L` and `R` are *permanent* parking slots that always stay on the
-  left and right 4K monitors. They exist so a monitor is never left with zero workspaces
-  when you shuffle `1`–`9` around. They're not on a number key; ignore them or use them as
+- **Anchor workspaces** `L`, `R`, and `B` are *permanent* parking slots that always stay on
+  the left 4K, right 4K, and laptop (built-in) respectively. They exist so a monitor is never
+  left with zero workspaces when you shuffle `1`–`9` around (e.g. moving `7 8 9` off the
+  laptop onto a bigger screen). They're not on a number key; ignore them or use them as
   scratch space.
 - **Office default home monitors** (the layout the mode scripts restore):
 
@@ -23,7 +24,7 @@ An i3/sway-style cheat sheet for this komorebi setup (3 monitors, 9 global works
   |:-------------:|-----------------|:--------------------:|
   | `0`           | Left 4K         | `L` (anchor) `2 5 6` |
   | `1`           | Right 4K        | `R` (anchor) `1 3 4` |
-  | `2`           | Laptop          | `7 8 9`              |
+  | `2`           | Laptop          | `B` (anchor) `7 8 9` |
 
   Any workspace can still be relocated at runtime; the scripts just snap things back.
 
@@ -183,7 +184,7 @@ After one clean start you can go back to the normal `komorebic start --whkd --ba
 ### Removing a single workspace at runtime
 `komorebic close-workspace` removes the **focused** workspace, but only if it is **empty**,
 **unnamed**, and **not the only workspace** on its monitor. Our workspaces (`1`–`9`, `L`,
-`R`) are all *named* on purpose, so this won't touch them — use `--clean-state` to clear
+`R`, `B`) are all *named* on purpose, so this won't touch them — use `--clean-state` to clear
 stray unnamed ones instead.
 
 ### Office / laptop mode shortcuts do nothing

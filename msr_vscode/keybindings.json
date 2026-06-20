@@ -185,6 +185,11 @@
     "when": "notebookEditorFocused && !inputFocus"
   },
   {
+    "key": "space c",
+    "command": "workbench.action.chat.open",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
     "key": "ctrl+w l",
     "command": "workbench.action.focusRightGroup",
     "when": "notebookEditorFocused && !inputFocus"
@@ -393,6 +398,11 @@
     "key": "ctrl+w e",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!editorTextFocus && !terminalFocus && !inQuickOpen"
   },
 
   // ╔════════════════════════════════════════════════════════════════════╗

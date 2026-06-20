@@ -43,6 +43,7 @@
     },
     {
       "workspaces": [
+        { "name": "B", "layout": "BSP" },
         { "name": "7", "layout": "BSP" },
         { "name": "8", "layout": "BSP" },
         { "name": "9", "layout": "BSP" }

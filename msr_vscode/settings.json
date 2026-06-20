@@ -48,6 +48,11 @@
       "before": ["<leader>", "f"],
       "commands": ["workbench.action.quickOpen"],
       "silent": true
+    },
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.chat.open"],
+      "silent": true
     }
   ],
 

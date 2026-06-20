@@ -53,6 +53,13 @@
           ],
           "silent": true,
       },
+      {
+          "before": ["<leader>", "c"],
+          "commands": [
+              "workbench.action.chat.open",
+          ],
+          "silent": true,
+      },
 ],
 "remote.SSH.connectTimeout": 180,
 "remote.SSH.remotePlatform": {
