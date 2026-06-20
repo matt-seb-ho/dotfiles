@@ -1,0 +1,416 @@
+// VSCode Vim + LazyVim-flavored keybindings — Windows host / Remote-SSH Linux.
+// Leader (<space>) bindings live in settings.json; modifier chords + the notebook
+// layer live here. Scan codes ([BracketLeft] etc.) are used instead of oem_* so
+// brackets behave the same across US/non-US layouts (and match the Mac config).
+[
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ QUICK OPEN NAVIGATION                                               ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "tab",
+    "command": "workbench.action.quickOpenNavigateNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ NOTEBOOK — CELL-LIST MODE  ⇄  EDIT MODE                             ║
+  // ║ Two layers: when !inputFocus you're in "cell list" mode (navigate   ║
+  // ║ between cells); pressing I/O enters a cell where Vim motions apply;  ║
+  // ║ Esc / Shift+Esc pops back out to cell-list mode.                    ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+
+  // ── Exit a cell back to cell-list mode ──────────────────────────────
+  {
+    "key": "shift+escape",
+    "command": "notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && !editorHasMultipleSelections && !editorHasSelection && !editorHoverVisible"
+  },
+  // Let Vim own a single Esc inside the cell (Normal mode); use Shift+Esc
+  // to actually leave the cell. This removes the default Esc=quitEdit so
+  // Esc first drops you into Vim Normal mode within the cell.
+  {
+    "key": "escape",
+    "command": "-notebook.cell.quitEdit",
+    "when": "inputFocus && notebookEditorFocused && vim.active && !editorHasSelection && !editorHoverVisible && vim.mode == 'Normal'"
+  },
+
+  // ── Cell-list navigation (Vim-style, no modifiers) ──────────────────
+  {
+    "key": "i",
+    "command": "notebook.cell.edit",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "enter",
+    "command": "notebook.cell.edit",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "g g",
+    "command": "list.focusFirst",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "shift+g",
+    "command": "list.focusLast",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+
+  // ── Cell operations (cell-list mode) ────────────────────────────────
+  {
+    "key": "d d",
+    "command": "notebook.cell.delete",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "shift+o",
+    "command": "notebook.cell.insertCodeCellAboveAndFocusContainer",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "o",
+    "command": "notebook.cell.insertCodeCellBelowAndFocusContainer",
+    "when": "listFocus && notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "y",
+    "command": "notebook.cell.copy",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "y y",
+    "command": "notebook.cell.copy",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "x",
+    "command": "notebook.cell.cut",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "p",
+    "command": "notebook.cell.paste",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "u",
+    "command": "undo",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  // ── Multi-cell selection (cell-list mode) ───────────────────────────
+  {
+    "key": "shift+k",
+    "command": "notebook.cell.selectUp",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "shift+j",
+    "command": "notebook.cell.selectDown",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  // ── Move cells up/down (cell-list mode) ─────────────────────────────
+  {
+    "key": "alt+k",
+    "command": "notebook.cell.moveUp",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "alt+j",
+    "command": "notebook.cell.moveDown",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+
+  // ── Cell execution ──────────────────────────────────────────────────
+  {
+    "key": "ctrl+enter",
+    "command": "notebook.cell.executeAndFocusContainer",
+    "when": "editorTextFocus && inputFocus && notebookEditorFocused || notebookCellListFocused"
+  },
+  {
+    "key": "shift+enter",
+    "command": "notebook.cell.executeAndSelectBelow",
+    "when": "editorTextFocus && inputFocus && notebookEditorFocused || notebookCellListFocused && notebookCellType == 'code'"
+  },
+  // Free the default Ctrl+Enter insert-cell bindings so the above win.
+  {
+    "key": "shift+ctrl+enter",
+    "command": "-notebook.cell.insertCodeCellAbove",
+    "when": "notebookCellListFocused && !inputFocus"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "-notebook.cell.insertCodeCellBelow",
+    "when": "notebookCellListFocused && !inputFocus"
+  },
+
+  // ── Notebook leader + window nav (cell-list mode) ───────────────────
+  {
+    "key": "space f",
+    "command": "workbench.action.quickOpen",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "space b",
+    "command": "workbench.action.showEditorsInActiveGroup",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "space shift+b",
+    "command": "workbench.action.showAllEditors",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+  {
+    "key": "ctrl+w h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "notebookEditorFocused && !inputFocus"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ WINDOW (SPLIT) NAVIGATION — Ctrl+h/j/k/l                            ║
+  // ║ Guarded so Ctrl+h/l still work in the terminal and Ctrl+j/k still   ║
+  // ║ drive suggestions / quick open.                                    ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "!terminalFocus && !filesExplorerFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.focusRightGroup",
+    "when": "!terminalFocus && !filesExplorerFocus && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "!terminalFocus && !filesExplorerFocus && !suggestWidgetVisible && !inQuickOpen && vim.active && vim.mode != 'Insert'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "!terminalFocus && !filesExplorerFocus && !suggestWidgetVisible && !inQuickOpen && vim.active && vim.mode != 'Insert'"
+  },
+
+  // ── File explorer: Vim navigation when it has focus ─────────────────
+  {
+    "key": "ctrl+j",
+    "command": "list.focusDown",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "list.focusUp",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "list.collapse",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "list.select",
+    "when": "filesExplorerFocus && !inputFocus"
+  },
+
+  // ── Generic list (search / problems) Vim navigation ─────────────────
+  {
+    "key": "j",
+    "command": "list.focusDown",
+    "when": "listFocus && !inputFocus && !notebookEditorFocused"
+  },
+  {
+    "key": "k",
+    "command": "list.focusUp",
+    "when": "listFocus && !inputFocus && !notebookEditorFocused"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ BUFFER / EDITOR NAVIGATION                                          ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "shift+h",
+    "command": "workbench.action.previousEditor",
+    "when": "vim.active && vim.mode != 'Insert' && !inputFocus && !notebookEditorFocused"
+  },
+  {
+    "key": "shift+l",
+    "command": "workbench.action.nextEditor",
+    "when": "vim.active && vim.mode != 'Insert' && !inputFocus && !notebookEditorFocused"
+  },
+  {
+    "key": "[BracketLeft] b",
+    "command": "workbench.action.previousEditor",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "[BracketRight] b",
+    "command": "workbench.action.nextEditor",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+
+  // ── Diagnostics navigation — [d / ]d (all files), [e / ]e (current) ──
+  {
+    "key": "[BracketLeft] d",
+    "command": "editor.action.marker.prevInFiles",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "[BracketRight] d",
+    "command": "editor.action.marker.nextInFiles",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "[BracketLeft] e",
+    "command": "editor.action.marker.prev",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "[BracketRight] e",
+    "command": "editor.action.marker.next",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+
+  // ── Git hunk navigation — [h / ]h ───────────────────────────────────
+  {
+    "key": "[BracketLeft] h",
+    "command": "workbench.action.editor.previousChange",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+  {
+    "key": "[BracketRight] h",
+    "command": "workbench.action.editor.nextChange",
+    "when": "editorTextFocus && vim.active && vim.mode == 'Normal'"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ SUGGESTION / QUICK-FIX NAVIGATION                                  ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetVisible"
+  },
+  {
+    "key": "tab",
+    "command": "selectNextSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "shift+tab",
+    "command": "selectPrevSuggestion",
+    "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+  },
+  {
+    "key": "tab",
+    "command": "selectNextQuickFix",
+    "when": "editorFocus && quickFixWidgetVisible"
+  },
+  {
+    "key": "shift+tab",
+    "command": "selectPrevQuickFix",
+    "when": "editorFocus && quickFixWidgetVisible"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ LINE MOVEMENT / SAVE / TERMINAL                                    ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "alt+j",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+k",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+  },
+  // Ctrl+/ toggles the terminal when the editor is focused; the !terminalFocus
+  // guard keeps Ctrl+/ free for readline/comment use inside the terminal.
+  {
+    "key": "ctrl+[Slash]",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "!terminalFocus"
+  },
+  // Jump between editor and terminal without closing it.
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+;",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  // Vim-like window prefix for chat: ctrl+w c opens chat, ctrl+w e returns.
+  {
+    "key": "ctrl+w c",
+    "command": "workbench.action.chat.open",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+w e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "!terminalFocus"
+  },
+
+  // ╔════════════════════════════════════════════════════════════════════╗
+  // ║ EDITOR LISTS / GROUPS                                               ║
+  // ║ Note: ctrl+k is taken by window-nav (focus above group) in Normal   ║
+  // ║ mode, so ctrl+k-prefixed chords would be shadowed. Use the leader   ║
+  // ║ layer instead — <space>b / <space>B (settings.json) and shift+h/l.  ║
+  // ╚════════════════════════════════════════════════════════════════════╝
+  {
+    "key": "ctrl+1",
+    "command": "workbench.action.focusFirstEditorGroup"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "workbench.action.focusSecondEditorGroup"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "workbench.action.focusThirdEditorGroup"
+  }
+]

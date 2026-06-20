@@ -1,0 +1,103 @@
+// VSCode settings — Windows host, primary use case: Remote-SSH into Linux boxes.
+// The Vim leader layer (<space>...) is modifier-free and therefore identical on
+// macOS / Linux / Windows; only the native chord layer (keybindings.json) differs.
+// Safe to keep in Settings Sync alongside the Mac config.
+{
+  // ── General workbench ──────────────────────────────────────────────
+  "window.commandCenter": false,
+  "git.decorations.enabled": false,
+  "workbench.colorTheme": "Rosé Pine Dawn",
+  "workbench.startupEditor": "none",
+  "workbench.quickOpen.closeOnFocusLost": false,
+  "workbench.activityBar.location": "hidden",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "notebook.lineNumbers": "on",
+  "files.simpleDialog.enable": true,
+
+  // ── Vim: leader on <space>, OS-agnostic motion/leader layer ────────
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["g", "H"],
+      "commands": [{ "command": "editor.action.showDefinitionPreviewHover" }]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "B"],
+      "commands": ["workbench.action.showAllEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"],
+      "silent": true
+    }
+  ],
+
+  // ── Remote / SSH (Linux hosts) ─────────────────────────────────────
+  // remotePlatform tells VSCode the host OS so it skips the probe and uses the
+  // right server build. Add an entry per SSH host alias from your ~/.ssh/config.
+  "remote.SSH.connectTimeout": 180,
+  "remote.SSH.remotePlatform": {
+    "nlp": "linux",
+    "csil": "linux"
+  },
+  // On Windows the bundled OpenSSH lacks the ControlMaster multiplexing the
+  // local-server path relies on, so force the remote-server connection path.
+  "remote.SSH.useLocalServer": false,
+
+  // ── Zen mode ───────────────────────────────────────────────────────
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+
+  // ── Terminal ───────────────────────────────────────────────────────
+  // Remote Linux sessions use fish; the local Windows host uses PowerShell.
+  // VSCode picks the profile matching wherever the integrated terminal runs,
+  // so both can coexist while you remote in and out.
+  "terminal.integrated.profiles.linux": {
+    "fish": {
+      "path": "/usr/bin/fish"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "source": "PowerShell",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "icon": "terminal-cmd"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  // ── Copilot ────────────────────────────────────────────────────────
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
+}

@@ -1,0 +1,86 @@
+// VSCode settings — native Linux host (hobby machine: sway / kitty / fish).
+// The Vim leader layer (<space>...) is modifier-free and therefore identical on
+// macOS / Linux / Windows; only the native chord layer (keybindings.json) differs.
+// Safe to keep in Settings Sync alongside the Mac and Windows configs.
+{
+  // ── General workbench ──────────────────────────────────────────────
+  "window.commandCenter": false,
+  "git.decorations.enabled": false,
+  "workbench.colorTheme": "Rosé Pine Dawn",
+  "workbench.startupEditor": "none",
+  "workbench.quickOpen.closeOnFocusLost": false,
+  "workbench.activityBar.location": "hidden",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "notebook.lineNumbers": "on",
+  "files.simpleDialog.enable": true,
+
+  // ── Vim: leader on <space>, OS-agnostic motion/leader layer ────────
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["g", "H"],
+      "commands": [{ "command": "editor.action.showDefinitionPreviewHover" }]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "B"],
+      "commands": ["workbench.action.showAllEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"],
+      "silent": true
+    }
+  ],
+
+  // ── Remote / SSH (other Linux hosts) ───────────────────────────────
+  // remotePlatform tells VSCode the host OS so it skips the probe and uses the
+  // right server build. Add an entry per SSH host alias from your ~/.ssh/config.
+  // Unlike the Windows host, the local-server path works fine here (OpenSSH on
+  // Linux has ControlMaster multiplexing), so useLocalServer is left at default.
+  "remote.SSH.connectTimeout": 180,
+  "remote.SSH.remotePlatform": {
+    "nlp": "linux",
+    "csil": "linux"
+  },
+
+  // ── Zen mode ───────────────────────────────────────────────────────
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+
+  // ── Terminal ───────────────────────────────────────────────────────
+  // Native Linux host: fish is the default integrated-terminal shell.
+  "terminal.integrated.profiles.linux": {
+    "fish": {
+      "path": "/usr/bin/fish"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "fish",
+
+  // ── Copilot ────────────────────────────────────────────────────────
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
+}
