@@ -1,0 +1,92 @@
+.shell powershell
+
+# ---------------------------------------------------------------------------
+# komorebi keybindings (i3/sway-style, 3 monitors, 9 global workspaces)
+#
+# Modifier: alt (komorebi convention; the Windows key conflicts with the OS).
+# To use the Windows key instead, replace "alt" with "win" throughout.
+#
+# Workspaces are UNIQUE and GLOBAL (named 1-9). They are addressed by NAME, so
+# alt + N always jumps to workspace N no matter which monitor it currently
+# lives on -- exactly like i3. Home monitors: 1-3 left, 4-6 right, 7-9 laptop,
+# but any workspace can be relocated to any monitor at runtime (see below).
+# ---------------------------------------------------------------------------
+
+# Reload
+alt + shift + o         : komorebic reload-configuration
+alt + shift + c         : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden
+
+# Mode switching (office <-> laptop)
+alt + shift + d         : powershell -NoProfile -ExecutionPolicy Bypass -File $Env:USERPROFILE\.config\komorebi-office-mode.ps1   # dock / office
+alt + shift + u         : powershell -NoProfile -ExecutionPolicy Bypass -File $Env:USERPROFILE\.config\komorebi-laptop-mode.ps1   # undock / laptop
+
+# Window management
+alt + q                 : komorebic close
+alt + m                 : komorebic minimize
+alt + t                 : komorebic toggle-float
+alt + shift + f         : komorebic toggle-monocle
+alt + shift + r         : komorebic retile
+alt + p                 : komorebic toggle-pause
+
+# Focus windows (directional)
+alt + h                 : komorebic focus left
+alt + j                 : komorebic focus down
+alt + k                 : komorebic focus up
+alt + l                 : komorebic focus right
+alt + shift + oem_4     : komorebic cycle-focus previous # [
+alt + shift + oem_6     : komorebic cycle-focus next     # ]
+
+# Move windows within the layout (directional)
+alt + shift + h         : komorebic move left
+alt + shift + j         : komorebic move down
+alt + shift + k         : komorebic move up
+alt + shift + l         : komorebic move right
+alt + shift + return    : komorebic promote
+
+# Resize
+alt + oem_plus          : komorebic resize-axis horizontal increase
+alt + oem_minus         : komorebic resize-axis horizontal decrease
+alt + shift + oem_plus  : komorebic resize-axis vertical increase
+alt + shift + oem_minus : komorebic resize-axis vertical decrease
+
+# Layouts
+alt + space             : komorebic cycle-layout next
+alt + x                 : komorebic flip-layout horizontal
+alt + y                 : komorebic flip-layout vertical
+
+# --- Workspaces: focus (global, by name; follows the workspace's monitor) ---
+alt + 1                 : komorebic focus-named-workspace 1
+alt + 2                 : komorebic focus-named-workspace 2
+alt + 3                 : komorebic focus-named-workspace 3
+alt + 4                 : komorebic focus-named-workspace 4
+alt + 5                 : komorebic focus-named-workspace 5
+alt + 6                 : komorebic focus-named-workspace 6
+alt + 7                 : komorebic focus-named-workspace 7
+alt + 8                 : komorebic focus-named-workspace 8
+alt + 9                 : komorebic focus-named-workspace 9
+
+# --- Send focused window to a workspace (global, no follow; i3-style) ---
+alt + shift + 1         : komorebic send-to-named-workspace 1
+alt + shift + 2         : komorebic send-to-named-workspace 2
+alt + shift + 3         : komorebic send-to-named-workspace 3
+alt + shift + 4         : komorebic send-to-named-workspace 4
+alt + shift + 5         : komorebic send-to-named-workspace 5
+alt + shift + 6         : komorebic send-to-named-workspace 6
+alt + shift + 7         : komorebic send-to-named-workspace 7
+alt + shift + 8         : komorebic send-to-named-workspace 8
+alt + shift + 9         : komorebic send-to-named-workspace 9
+
+# --- Monitors: move focus between outputs ---
+alt + ctrl + h          : komorebic focus-monitor 0   # left 4K
+alt + ctrl + l          : komorebic focus-monitor 1   # right 4K
+alt + ctrl + j          : komorebic focus-monitor 2   # laptop
+alt + oem_comma         : komorebic cycle-monitor previous # ,
+alt + oem_period        : komorebic cycle-monitor next     # .
+
+# --- Move the CURRENT workspace to another monitor (i3 "move workspace to output") ---
+# The whole workspace (with its windows) relocates; alt + N still finds it afterwards.
+alt + ctrl + shift + h  : komorebic move-workspace-to-monitor 0   # -> left 4K
+alt + ctrl + shift + l  : komorebic move-workspace-to-monitor 1   # -> right 4K
+alt + ctrl + shift + j  : komorebic move-workspace-to-monitor 2   # -> laptop
+alt + ctrl + oem_comma  : komorebic cycle-move-workspace-to-monitor previous
+alt + ctrl + oem_period : komorebic cycle-move-workspace-to-monitor next
