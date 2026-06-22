@@ -19,6 +19,7 @@ alt + shift + c         : taskkill /f /im whkd.exe; Start-Process whkd -WindowSt
 # Mode switching (office <-> laptop)
 alt + shift + d         : powershell -NoProfile -ExecutionPolicy Bypass -File $Env:USERPROFILE\.config\komorebi-office-mode.ps1   # dock / office
 alt + shift + u         : powershell -NoProfile -ExecutionPolicy Bypass -File $Env:USERPROFILE\.config\komorebi-laptop-mode.ps1   # undock / laptop
+alt + shift + g         : powershell -NoProfile -ExecutionPolicy Bypass -File $Env:USERPROFILE\.config\komorebi-panic-gather.ps1  # panic gather (recover stranded windows after undock)
 
 # Window management
 alt + q                 : komorebic close
@@ -48,6 +49,15 @@ alt + oem_plus          : komorebic resize-axis horizontal increase
 alt + oem_minus         : komorebic resize-axis horizontal decrease
 alt + shift + oem_plus  : komorebic resize-axis vertical increase
 alt + shift + oem_minus : komorebic resize-axis vertical decrease
+
+# Stacking (i3-style tabbed containers; stackbar tabs appear on stack)
+alt + a                 : komorebic stack left
+alt + s                 : komorebic stack down
+alt + d                 : komorebic stack up
+alt + f                 : komorebic stack right
+alt + u                 : komorebic unstack
+alt + oem_4             : komorebic cycle-stack previous   # [
+alt + oem_6             : komorebic cycle-stack next       # ]
 
 # Layouts
 alt + space             : komorebic cycle-layout next

@@ -74,6 +74,17 @@ The entire workspace (with its windows) relocates; `alt + N` still finds it afte
 | `alt + shift + h/j/k/l` | Move left/down/up/right|
 | `alt + shift + enter`   | Promote to main        |
 
+## Stacking (i3-style tabbed containers)
+
+Stack windows together into one tile; the focused window's name shows in the komorebi bar.
+
+| Shortcut             | Action                         |
+|----------------------|--------------------------------|
+| `alt + a / s / d / f`| Stack with neighbour left/down/up/right |
+| `alt + u`            | Unstack focused window         |
+| `alt + [`            | Cycle to previous in stack     |
+| `alt + ]`            | Cycle to next in stack         |
+
 ## Layout
 
 | Shortcut       | Action                  |
@@ -115,9 +126,25 @@ The entire workspace (with its windows) relocates; `alt + N` still finds it afte
 |-------------------|----------------------------------------------------------------|
 | `alt + shift + d` | **Office mode** — fan `2 5 6`→left, `1 3 4`→right, `7 8 9`→laptop |
 | `alt + shift + u` | **Laptop mode** — pull `1`–`6` onto the laptop, ready to undock   |
+| `alt + shift + g` | **Panic gather** — recover stranded windows if you forgot laptop mode |
 
-Both scripts require all 3 monitors connected (run while docked). They live at
+Both mode scripts require all 3 monitors connected (run while docked). They live at
 `C:\Users\<you>\.config\komorebi-office-mode.ps1` and `komorebi-laptop-mode.ps1`.
+
+### If you undock WITHOUT running laptop mode first
+When you undock, komorebi caches the external monitors and leaves their inactive-workspace
+windows **COM-cloaked** (hidden). Because of how the cloak works, a plain komorebi restart
+does **not** bring them back. Recovery options, best first:
+
+1. **Re-dock briefly → `alt + shift + u` (laptop mode) → undock.** Reconnecting makes komorebi
+   restore and un-cloak the cached windows. This is the bulletproof fix when a monitor is
+   reachable.
+2. **Click the app's taskbar icon** (or Alt-Tab to it). Activating a window un-cloaks it and
+   komorebi tiles it onto the laptop. Works with no external monitor, one window at a time.
+3. **`alt + shift + g` (panic gather, experimental).** Finds all cloaked-but-unmanaged windows
+   and force-activates them so komorebi re-tiles them onto the laptop's current workspace;
+   redistribute with `alt + shift + N`. Only runs when the laptop is the sole monitor. Logs to
+   `%TEMP%\komorebi-panic-gather.log`. If a window won't come back, fall back to option 2.
 
 ---
 
@@ -157,6 +184,7 @@ replug the screen or `komorebic stop && komorebic start --whkd --bar`.
 | `whkdrc` (no extension)           | `C:\Users\<you>\.config\`             |
 | `komorebi-office-mode.ps1`        | `C:\Users\<you>\.config\`             |
 | `komorebi-laptop-mode.ps1`        | `C:\Users\<you>\.config\`             |
+| `komorebi-panic-gather.ps1`       | `C:\Users\<you>\.config\`             |
 
 **Start everything:** `komorebic start --whkd --bar`
 **Check resolved whkdrc path:** `komorebic whkdrc`
