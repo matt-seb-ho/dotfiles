@@ -37,6 +37,8 @@ foreach ($s in @($SERIAL_LEFT, $SERIAL_RIGHT, $SERIAL_LAPTOP)) {
 }
 
 $idxLaptop = $bySerial[$SERIAL_LAPTOP]
+$idxLeft   = $bySerial[$SERIAL_LEFT]
+$idxRight  = $bySerial[$SERIAL_RIGHT]
 
 function Move-WS([string]$ws, [int]$monitor) {
     komorebic focus-named-workspace $ws
@@ -46,6 +48,15 @@ function Move-WS([string]$ws, [int]$monitor) {
 }
 
 foreach ($ws in '1','2','3','4','5','6') { Move-WS $ws $idxLaptop }
+
+# Re-assert the anchor workspace names on each monitor's index-0 slot. This keeps
+# the anchors (L/R/B) correctly labelled and guards against a nameless default
+# workspace ever sitting at index 0 (which the bar would render as "1", "2", ...).
+# workspace-name RENAMES the existing index-0 workspace in place -- it never
+# creates a new one -- so this is a no-op when the name is already correct.
+komorebic workspace-name $idxLeft   0 L
+komorebic workspace-name $idxRight  0 R
+komorebic workspace-name $idxLaptop 0 B
 
 komorebic focus-monitor $idxLaptop
 komorebic retile

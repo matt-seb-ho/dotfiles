@@ -2,6 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.41/schema.bar.json",
   "font_family": "Cascadia Code",
   "monitor": 2,
+  "height": 30,
+  "font_size": 9.5,
+  "padding": 6,
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
@@ -20,7 +23,7 @@
         },
         "focused_window": {
           "enable": true,
-          "show_icon": true
+          "show_icon": false
         }
       }
     }

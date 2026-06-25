@@ -53,6 +53,17 @@ foreach ($ws in '2','5','6') { Move-WS $ws $idxLeft }
 foreach ($ws in '1','3','4') { Move-WS $ws $idxRight }
 foreach ($ws in '7','8','9') { Move-WS $ws $idxLaptop }
 
+# Re-assert the anchor workspace names on each monitor's index-0 slot.
+# On redock, komorebi can seed a reconnected monitor with a nameless default
+# workspace (Workspace::default()) at index 0 instead of restoring the cached
+# anchor. The bar then renders that nameless slot as its 1-based index (e.g. "1")
+# instead of the anchor letter. workspace-name RENAMES the existing index-0
+# workspace in place -- it never creates a new one -- so this is a no-op when the
+# name is already correct and fixes the nameless case otherwise.
+komorebic workspace-name $idxLeft   0 L
+komorebic workspace-name $idxRight  0 R
+komorebic workspace-name $idxLaptop 0 B
+
 komorebic focus-monitor $idxLeft
 komorebic retile
 Write-Host "office-mode: done."

@@ -131,6 +131,32 @@ Stack windows together into one tile; the focused window's name shows in the kom
 Both mode scripts require all 3 monitors connected (run while docked). They live at
 `C:\Users\<you>\.config\komorebi-office-mode.ps1` and `komorebi-laptop-mode.ps1`.
 
+> These shuffle the **already-running** komorebi between layouts. For a full
+> **restart** while undocked, see *Starting / restarting komorebi* below — a plain
+> docked restart while undocked seeds workspaces 1-6 onto external monitors that
+> aren't there.
+
+## Starting / restarting komorebi (docked vs laptop)
+
+komorebi is started, not bound to a key (whkd isn't running yet). From an
+**elevated** PowerShell:
+
+| Command                                         | Use when                                   |
+|-------------------------------------------------|--------------------------------------------|
+| `komorebic start --whkd --bar --clean-state`    | **Docked** (default, 3 monitors)           |
+| `.\komorebi-start.ps1`                          | Docked, via the wrapper (same as above)    |
+| `.\komorebi-start.ps1 -Laptop`                  | **Undocked** restart (built-in screen only)|
+
+`komorebi-start.ps1` defaults to docked; `-Laptop` loads the single-monitor
+`komorebi.laptop.json` (anchor `B` + workspaces `1`-`9`, one bar) so a cold start
+while undocked never tries to seed `1`-`6` on the absent external monitors. Stop is
+the same in both modes: `komorebic stop --whkd --bar`.
+
+> **Why two laptop tools?** `alt + shift + u` (laptop-mode.ps1) re-shuffles a
+> *running* komorebi and must run **while docked** (it needs all 3 monitors).
+> `komorebi-start.ps1 -Laptop` is for a **cold start/restart while already
+> undocked**, when there's nothing to shuffle.
+
 ### If you undock WITHOUT running laptop mode first
 When you undock, komorebi caches the external monitors and leaves their inactive-workspace
 windows **COM-cloaked** (hidden). Because of how the cloak works, a plain komorebi restart
@@ -180,13 +206,17 @@ replug the screen or `komorebic stop && komorebic start --whkd --bar`.
 | File                              | Windows path                          |
 |-----------------------------------|---------------------------------------|
 | `komorebi.json`                   | `C:\Users\<you>\`                     |
+| `komorebi.laptop.json`            | `C:\Users\<you>\`                     |
 | `komorebi.bar.monitor1/2/3.json`  | `C:\Users\<you>\`                     |
+| `komorebi.bar.laptop.json`        | `C:\Users\<you>\`                     |
 | `whkdrc` (no extension)           | `C:\Users\<you>\.config\`             |
 | `komorebi-office-mode.ps1`        | `C:\Users\<you>\.config\`             |
 | `komorebi-laptop-mode.ps1`        | `C:\Users\<you>\.config\`             |
+| `komorebi-start.ps1`              | `C:\Users\<you>\.config\`             |
 | `komorebi-panic-gather.ps1`       | `C:\Users\<you>\.config\`             |
 
-**Start everything:** `komorebic start --whkd --bar`
+**Start everything (docked):** `komorebic start --whkd --bar --clean-state`
+**Start undocked (laptop only):** `.\komorebi-start.ps1 -Laptop`
 **Check resolved whkdrc path:** `komorebic whkdrc`
 
 > **Note:** `komorebic` only works from an **elevated (Administrator) PowerShell**,
