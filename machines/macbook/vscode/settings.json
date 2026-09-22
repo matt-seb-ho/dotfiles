@@ -1,0 +1,129 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "editor.accessibilitySupport": "off",
+  "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
+  "editor.rulers": [80],
+  "files.insertFinalNewline": true,
+  "files.simpleDialog.enable": true,
+  "git.decorations.enabled": false,
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.enable": {
+    "*": true,
+    "markdown": true,
+    "plaintext": false,
+    "scminput": false
+  },
+  "gitlens.defaultGravatarsStyle": "identicon",
+  "jupyter.debugJustMyCode": false,
+  "notebook.formatOnSave.enabled": true,
+  "notebook.lineNumbers": "on",
+  "notebook.output.wordWrap": true,
+  "python.defaultInterpreterPath": "/Users/matthewho/miniconda3/envs/nlp",
+  "remote.SSH.connectTimeout": 180,
+  "remote.SSH.remotePlatform": {
+    "nlp": "linux",
+    "srv10": "linux",
+    "srv11": "linux",
+    "srv12": "linux",
+    "srv13": "linux",
+    "ccvm": "linux",
+    "ccs": "linux",
+    "cece": "linux",
+    "srv6": "linux"
+  },
+  "remote.SSH.useLocalServer": false,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.linux": {
+    "fish": {
+      "path": "/usr/bin/fish"
+    }
+  },
+  "update.mode": "manual",
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showEditorsInActiveGroup"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "B"],
+      "commands": ["workbench.action.showAllEditors"],
+      "silent": true
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["workbench.action.quickOpen"],
+      "silent": true
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["editor.action.findAllFileReferences"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["g", "H"],
+      "commands": [
+        {
+          "command": "editor.action.showDefinitionPreviewHover"
+        }
+      ]
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "window.commandCenter": false,
+  "window.dialogStyle": "custom",
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Rosé Pine",
+  "workbench.quickOpen.closeOnFocusLost": false,
+  "workbench.startupEditor": "none",
+  "zenMode.fullScreen": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+  "editor.indentSize": "tabSize",
+  "files.exclude": {
+    "**/__pycache__": true
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "ruff.configuration": "",
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+  "files.autoSave": "afterDelay",
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "sonnet"
+}

@@ -1,0 +1,599 @@
+# Color palette reference
+#
+# A single source of truth for the colorschemes I like, so Claude (or I) can be
+# pointed at this file for any front-end / theming / color-customization work
+# instead of guessing hexes from memory.
+#
+# Preference order:
+#   1. Rosé Pine Dawn   <- daily driver (light)
+#   2. Rosé Pine / Moon <- dark counterparts
+#   3. Gruvbox          <- long-time former default, still fond of it
+#   4. Everforest / Kanagawa / Catppuccin <- evaluated at various points
+#
+# Values pulled from upstream sources (see `source:` on each theme), not eyeballed.
+# Last verified: 2026-09-09
+
+meta:
+  default: rose-pine-dawn
+  fallback_dark: rose-pine-moon
+
+# ---------------------------------------------------------------------------
+# Rosé Pine — https://rosepinetheme.com
+# ---------------------------------------------------------------------------
+# Role model (same 12 semantic names across all three variants, so a theme
+# written against these names works in any variant by swapping the block):
+#
+#   base            main background
+#   surface         raised background (floats, panels, sidebars)
+#   overlay         popups / menus, one step above surface
+#   muted           de-emphasized text: comments, line numbers, disabled
+#   subtle          secondary text, punctuation, borders
+#   text            primary foreground
+#   love            red        — errors, deletions, keywords
+#   gold            yellow     — warnings, constants, strings (in some ports)
+#   rose            soft pink  — parameters, inline accents
+#   pine            teal/blue  — functions, primary accent (dark on dawn)
+#   foam            cyan       — types, hints, links
+#   iris            purple     — operators, special, secondary accent
+#   highlight_low   cursorline / subtle row highlight
+#   highlight_med   visual selection
+#   highlight_high  borders, cursor, strongest divider
+#   leaf            muted green (nvim port extra; not in the core 12)
+#
+rose-pine:
+  source: https://github.com/rose-pine/rose-pine-palette (palette.json) + rose-pine/neovim palette.lua
+  note: >
+    Upstream bumped dawn's `text` from #575279 to #464261 for contrast. Older
+    configs in this repo (e.g. jagaimo/kitty/current-theme.conf) still carry
+    #575279 — both are "correct", just different vintages. Prefer #464261.
+  variants:
+
+    main:            # the original dark
+      appearance: dark
+      base:           "#191724"
+      surface:        "#1f1d2e"
+      overlay:        "#26233a"
+      muted:          "#6e6a86"
+      subtle:         "#908caa"
+      text:           "#e0def4"
+      love:           "#eb6f92"
+      gold:           "#f6c177"
+      rose:           "#ebbcba"
+      pine:           "#31748f"
+      foam:           "#9ccfd8"
+      iris:           "#c4a7e7"
+      leaf:           "#95b1ac"
+      highlight_low:  "#21202e"
+      highlight_med:  "#403d52"
+      highlight_high: "#524f67"
+      inactive_bg:    "#16141f"   # `_nc` — unfocused split background
+
+    moon:            # softer, slightly warmer dark
+      appearance: dark
+      base:           "#232136"
+      surface:        "#2a273f"
+      overlay:        "#393552"
+      muted:          "#6e6a86"
+      subtle:         "#908caa"
+      text:           "#e0def4"
+      love:           "#eb6f92"
+      gold:           "#f6c177"
+      rose:           "#ea9a97"
+      pine:           "#3e8fb0"
+      foam:           "#9ccfd8"
+      iris:           "#c4a7e7"
+      leaf:           "#95b1ac"
+      highlight_low:  "#2a283e"
+      highlight_med:  "#44415a"
+      highlight_high: "#56526e"
+      inactive_bg:    "#1f1d30"
+
+    dawn:            # PRIMARY — light
+      appearance: light
+      base:           "#faf4ed"
+      surface:        "#fffaf3"
+      overlay:        "#f2e9e1"
+      muted:          "#9893a5"
+      subtle:         "#797593"
+      text:           "#464261"
+      love:           "#b4637a"
+      gold:           "#ea9d34"
+      rose:           "#d7827e"
+      pine:           "#286983"
+      foam:           "#56949f"
+      iris:           "#907aa9"
+      leaf:           "#6d8f89"
+      highlight_low:  "#f4ede8"
+      highlight_med:  "#dfdad9"
+      highlight_high: "#cecacd"
+      inactive_bg:    "#f8f0e7"
+
+# ---------------------------------------------------------------------------
+# Gruvbox — https://github.com/morhetz/gruvbox
+# ---------------------------------------------------------------------------
+# Retro groove. Warm, high-contrast, sepia-toned. Structure differs from Rosé
+# Pine: a dark ramp, a light ramp, and three saturation tiers of accents
+# (bright / neutral / faded). Dark themes use `bright` accents on the dark ramp;
+# light themes use `faded` accents on the light ramp. `neutral` is the middle
+# ground and what the 16-color terminal palette uses.
+gruvbox:
+  source: https://github.com/morhetz/gruvbox/blob/master/colors/gruvbox.vim
+  dark_ramp:      # backgrounds for dark mode, fg for light mode
+    dark0_hard:  "#1d2021"
+    dark0:       "#282828"   # default dark bg
+    dark0_soft:  "#32302f"
+    dark1:       "#3c3836"
+    dark2:       "#504945"
+    dark3:       "#665c54"
+    dark4:       "#7c6f64"
+  light_ramp:     # backgrounds for light mode, fg for dark mode
+    light0_hard: "#f9f5d7"
+    light0:      "#fbf1c7"   # default light bg
+    light0_soft: "#f2e5bc"
+    light1:      "#ebdbb2"   # default dark-mode fg
+    light2:      "#d5c4a1"
+    light3:      "#bdae93"
+    light4:      "#a89984"
+  gray:          "#928374"   # comments, in both modes
+  bright:         # accents for dark backgrounds
+    red:    "#fb4934"
+    green:  "#b8bb26"
+    yellow: "#fabd2f"
+    blue:   "#83a598"
+    purple: "#d3869b"
+    aqua:   "#8ec07c"
+    orange: "#fe8019"
+  neutral:        # terminal 16-color set
+    red:    "#cc241d"
+    green:  "#98971a"
+    yellow: "#d79921"
+    blue:   "#458588"
+    purple: "#b16286"
+    aqua:   "#689d6a"
+    orange: "#d65d0e"
+  faded:          # accents for light backgrounds
+    red:    "#9d0006"
+    green:  "#79740e"
+    yellow: "#b57614"
+    blue:   "#076678"
+    purple: "#8f3f71"
+    aqua:   "#427b58"
+    orange: "#af3a03"
+
+# ---------------------------------------------------------------------------
+# Everforest (sainnhe) — https://github.com/sainnhe/everforest
+# ---------------------------------------------------------------------------
+# Green-based, low-contrast, "comfortable for the eyes". Two axes: background
+# (dark / light) x contrast (hard / medium / soft). Accents are shared across
+# all three contrast levels within a background — only the bg ramp changes.
+everforest:
+  source: https://github.com/sainnhe/everforest/blob/master/autoload/everforest.vim
+  dark:
+    accents:
+      fg:     "#d3c6aa"
+      red:    "#e67e80"
+      orange: "#e69875"
+      yellow: "#dbbc7f"
+      green:  "#a7c080"
+      aqua:   "#83c092"
+      blue:   "#7fbbb3"
+      purple: "#d699b6"
+      grey0:  "#7a8478"
+      grey1:  "#859289"
+      grey2:  "#9da9a0"
+    backgrounds:
+      hard:
+        bg_dim: "#1e2326"
+        bg0:    "#272e33"
+        bg1:    "#2e383c"
+        bg2:    "#374145"
+        bg3:    "#414b50"
+        bg4:    "#495156"
+        bg5:    "#4f5b58"
+        bg_visual: "#4c3743"
+        bg_red:    "#493b40"
+        bg_yellow: "#45443c"
+        bg_green:  "#3c4841"
+        bg_blue:   "#384b55"
+        bg_purple: "#463f48"
+      medium:
+        bg_dim: "#232a2e"
+        bg0:    "#2d353b"
+        bg1:    "#343f44"
+        bg2:    "#3d484d"
+        bg3:    "#475258"
+        bg4:    "#4f585e"
+        bg5:    "#56635f"
+        bg_visual: "#543a48"
+        bg_red:    "#514045"
+        bg_yellow: "#4d4c43"
+        bg_green:  "#425047"
+        bg_blue:   "#3a515d"
+        bg_purple: "#4a444e"
+      soft:
+        bg_dim: "#293136"
+        bg0:    "#333c43"
+        bg1:    "#3a464c"
+        bg2:    "#434f55"
+        bg3:    "#4d5960"
+        bg4:    "#555f66"
+        bg5:    "#5d6b66"
+        bg_visual: "#5c3f4f"
+        bg_red:    "#59464c"
+        bg_yellow: "#55544a"
+        bg_green:  "#48584e"
+        bg_blue:   "#3f5865"
+        bg_purple: "#4e4953"
+  light:
+    accents:
+      fg:     "#5c6a72"
+      red:    "#f85552"
+      orange: "#f57d26"
+      yellow: "#dfa000"
+      green:  "#8da101"
+      aqua:   "#35a77c"
+      blue:   "#3a94c5"
+      purple: "#df69ba"
+      grey0:  "#a6b0a0"
+      grey1:  "#939f91"
+      grey2:  "#829181"
+    backgrounds:
+      hard:
+        bg_dim: "#f2efdf"
+        bg0:    "#fffbef"
+        bg1:    "#f8f5e4"
+        bg2:    "#f2efdf"
+        bg3:    "#edeada"
+        bg4:    "#e8e5d5"
+        bg5:    "#bec5b2"
+        bg_visual: "#f0f2d4"
+        bg_red:    "#ffe7de"
+        bg_yellow: "#fef2d5"
+        bg_green:  "#f3f5d9"
+        bg_blue:   "#ecf5ed"
+        bg_purple: "#fceced"
+      medium:
+        bg_dim: "#efebd4"
+        bg0:    "#fdf6e3"
+        bg1:    "#f4f0d9"
+        bg2:    "#efebd4"
+        bg3:    "#e6e2cc"
+        bg4:    "#e0dcc7"
+        bg5:    "#bdc3af"
+        bg_visual: "#eaedc8"
+        bg_red:    "#fde3da"
+        bg_yellow: "#faedcd"
+        bg_green:  "#f0f1d2"
+        bg_blue:   "#e9f0e9"
+        bg_purple: "#fae8e2"
+      soft:
+        bg_dim: "#e5dfc5"
+        bg0:    "#f3ead3"
+        bg1:    "#eae4ca"
+        bg2:    "#e5dfc5"
+        bg3:    "#ddd8be"
+        bg4:    "#d8d3ba"
+        bg5:    "#b9c0ab"
+        bg_visual: "#e1e4bd"
+        bg_red:    "#fadbd0"
+        bg_yellow: "#f1e4c5"
+        bg_green:  "#e5e6c5"
+        bg_blue:   "#e1e7dd"
+        bg_purple: "#f1ddd4"
+
+# ---------------------------------------------------------------------------
+# Kanagawa — https://github.com/rebelot/kanagawa.nvim
+# ---------------------------------------------------------------------------
+# Inspired by Hokusai's "The Great Wave". Poetic color names rather than
+# semantic ones; the three themes (wave / dragon / lotus) draw from one shared
+# palette. `ui` below is the resolved mapping each theme uses.
+kanagawa:
+  source: https://github.com/rebelot/kanagawa.nvim (lua/kanagawa/colors.lua + themes.lua)
+  themes:
+
+    wave:            # default dark — muted blue-ink background
+      appearance: dark
+      ui:
+        fg:      "#DCD7BA"   # fujiWhite
+        fg_dim:  "#C8C093"   # oldWhite
+        bg_dim:  "#181820"   # sumiInk1
+        bg_m3:   "#16161D"   # sumiInk0 — floats
+        bg:      "#1F1F28"   # sumiInk3 — default background
+        bg_p1:   "#2A2A37"   # sumiInk4 — gutter, colorcolumn, folds
+        bg_p2:   "#363646"   # sumiInk5 — cursorline, selected tab
+        nontext: "#54546D"   # sumiInk6
+        bg_visual: "#223249" # waveBlue1
+        bg_search: "#2D4F67" # waveBlue2
+      syntax:
+        string:    "#98BB6C"  # springGreen
+        number:    "#D27E99"  # sakuraPink
+        constant:  "#FFA066"  # surimiOrange
+        function:  "#7E9CD8"  # crystalBlue
+        identifier: "#E6C384"  # carpYellow
+        parameter: "#b8b4d0"  # oniViolet2
+        keyword:   "#957FB8"  # oniViolet
+        type:      "#7AA89F"  # waveAqua2
+        operator:  "#C0A36E"  # boatYellow2
+        comment:   "#727169"  # fujiGray
+        special:   "#7FB4CA"  # springBlue
+      diagnostics:
+        error:   "#E82424"  # samuraiRed
+        warning: "#FF9E3B"  # roninYellow
+        info:    "#658594"  # dragonBlue
+        hint:    "#6A9589"  # waveAqua1
+      diff:
+        add:    "#2B3328"  # winterGreen
+        change: "#49443C"  # winterYellow
+        delete: "#43242B"  # winterRed
+        text:   "#252535"  # winterBlue
+      vcs:
+        added:   "#76946A"  # autumnGreen
+        changed: "#DCA561"  # autumnYellow
+        removed: "#C34043"  # autumnRed
+
+    dragon:          # darker, desaturated, nearly monochrome ink
+      appearance: dark
+      ui:
+        fg:      "#c5c9c5"   # dragonWhite
+        fg_dim:  "#C8C093"   # oldWhite
+        bg_dim:  "#12120f"   # dragonBlack1
+        bg_m3:   "#0d0c0c"   # dragonBlack0 — floats
+        bg:      "#181616"   # dragonBlack3 — default background
+        bg_p1:   "#282727"   # dragonBlack4
+        bg_p2:   "#393836"   # dragonBlack5
+        nontext: "#625e5a"   # dragonBlack6
+      accents:
+        red:    "#c4746e"   # dragonRed
+        orange: "#b6927b"   # dragonOrange
+        yellow: "#c4b28a"   # dragonYellow
+        green:  "#87a987"   # dragonGreen
+        green2: "#8a9a7b"   # dragonGreen2
+        aqua:   "#8ea4a2"   # dragonAqua
+        blue:   "#8ba4b0"   # dragonBlue2
+        teal:   "#949fb5"   # dragonTeal
+        violet: "#8992a7"   # dragonViolet
+        pink:   "#a292a3"   # dragonPink
+        ash:    "#737c73"   # dragonAsh
+        gray:   "#a6a69c"   # dragonGray
+
+    lotus:           # light — warm parchment
+      appearance: light
+      ui:
+        fg:      "#545464"   # lotusInk1
+        fg_dim:  "#43436c"   # lotusInk2
+        bg_dim:  "#dcd5ac"   # lotusWhite1
+        bg_m3:   "#d5cea3"   # lotusWhite0 — floats
+        bg:      "#f2ecbc"   # lotusWhite3 — default background
+        bg_p1:   "#e7dba0"   # lotusWhite4
+        bg_p2:   "#e4d794"   # lotusWhite5
+        nontext: "#a09cac"   # lotusViolet1
+      accents:
+        red:    "#c84053"   # lotusRed
+        red_bright: "#e82424" # lotusRed3
+        orange: "#cc6d00"   # lotusOrange
+        yellow: "#77713f"   # lotusYellow
+        yellow_bright: "#de9800" # lotusYellow3
+        green:  "#6f894e"   # lotusGreen
+        aqua:   "#597b75"   # lotusAqua
+        blue:   "#4d699b"   # lotusBlue4
+        teal:   "#4e8ca2"   # lotusTeal1
+        violet: "#624c83"   # lotusViolet4
+        pink:   "#b35b79"   # lotusPink
+        gray:   "#8a8980"   # lotusGray3
+
+# ---------------------------------------------------------------------------
+# Catppuccin — https://github.com/catppuccin/catppuccin
+# ---------------------------------------------------------------------------
+# Four flavors sharing one role vocabulary: 14 named accents plus a 12-step
+# neutral ramp from `crust` (deepest) through `base` (default bg) up to `text`.
+# Ramp order, dark to light in dark flavors:
+#   crust < mantle < base < surface0 < surface1 < surface2
+#         < overlay0 < overlay1 < overlay2 < subtext0 < subtext1 < text
+# (in Latte the lightness order inverts: crust is the darkest *edge* color and
+# base is the lightest surface.)
+catppuccin:
+  source: https://github.com/catppuccin/palette/blob/main/palette.json (v1.8.0)
+  flavors:
+
+    latte:           # light
+      appearance: light
+      rosewater: "#dc8a78"
+      flamingo:  "#dd7878"
+      pink:      "#ea76cb"
+      mauve:     "#8839ef"
+      red:       "#d20f39"
+      maroon:    "#e64553"
+      peach:     "#fe640b"
+      yellow:    "#df8e1d"
+      green:     "#40a02b"
+      teal:      "#179299"
+      sky:       "#04a5e5"
+      sapphire:  "#209fb5"
+      blue:      "#1e66f5"
+      lavender:  "#7287fd"
+      text:      "#4c4f69"
+      subtext1:  "#5c5f77"
+      subtext0:  "#6c6f85"
+      overlay2:  "#7c7f93"
+      overlay1:  "#8c8fa1"
+      overlay0:  "#9ca0b0"
+      surface2:  "#acb0be"
+      surface1:  "#bcc0cc"
+      surface0:  "#ccd0da"
+      base:      "#eff1f5"
+      mantle:    "#e6e9ef"
+      crust:     "#dce0e8"
+
+    frappe:          # dark, warmest of the three darks
+      appearance: dark
+      rosewater: "#f2d5cf"
+      flamingo:  "#eebebe"
+      pink:      "#f4b8e4"
+      mauve:     "#ca9ee6"
+      red:       "#e78284"
+      maroon:    "#ea999c"
+      peach:     "#ef9f76"
+      yellow:    "#e5c890"
+      green:     "#a6d189"
+      teal:      "#81c8be"
+      sky:       "#99d1db"
+      sapphire:  "#85c1dc"
+      blue:      "#8caaee"
+      lavender:  "#babbf1"
+      text:      "#c6d0f5"
+      subtext1:  "#b5bfe2"
+      subtext0:  "#a5adce"
+      overlay2:  "#949cbb"
+      overlay1:  "#838ba7"
+      overlay0:  "#737994"
+      surface2:  "#626880"
+      surface1:  "#51576d"
+      surface0:  "#414559"
+      base:      "#303446"
+      mantle:    "#292c3c"
+      crust:     "#232634"
+
+    macchiato:       # dark, middle
+      appearance: dark
+      rosewater: "#f4dbd6"
+      flamingo:  "#f0c6c6"
+      pink:      "#f5bde6"
+      mauve:     "#c6a0f6"
+      red:       "#ed8796"
+      maroon:    "#ee99a0"
+      peach:     "#f5a97f"
+      yellow:    "#eed49f"
+      green:     "#a6da95"
+      teal:      "#8bd5ca"
+      sky:       "#91d7e3"
+      sapphire:  "#7dc4e4"
+      blue:      "#8aadf4"
+      lavender:  "#b7bdf8"
+      text:      "#cad3f5"
+      subtext1:  "#b8c0e0"
+      subtext0:  "#a5adcb"
+      overlay2:  "#939ab7"
+      overlay1:  "#8087a2"
+      overlay0:  "#6e738d"
+      surface2:  "#5b6078"
+      surface1:  "#494d64"
+      surface0:  "#363a4f"
+      base:      "#24273a"
+      mantle:    "#1e2030"
+      crust:     "#181926"
+
+    mocha:           # dark, most contrast — the popular default
+      appearance: dark
+      rosewater: "#f5e0dc"
+      flamingo:  "#f2cdcd"
+      pink:      "#f5c2e7"
+      mauve:     "#cba6f7"
+      red:       "#f38ba8"
+      maroon:    "#eba0ac"
+      peach:     "#fab387"
+      yellow:    "#f9e2af"
+      green:     "#a6e3a1"
+      teal:      "#94e2d5"
+      sky:       "#89dceb"
+      sapphire:  "#74c7ec"
+      blue:      "#89b4fa"
+      lavender:  "#b4befe"
+      text:      "#cdd6f4"
+      subtext1:  "#bac2de"
+      subtext0:  "#a6adc8"
+      overlay2:  "#9399b2"
+      overlay1:  "#7f849c"
+      overlay0:  "#6c7086"
+      surface2:  "#585b70"
+      surface1:  "#45475a"
+      surface0:  "#313244"
+      base:      "#1e1e2e"
+      mantle:    "#181825"
+      crust:     "#11111b"
+
+# ---------------------------------------------------------------------------
+# Cross-theme role mapping cheat sheet
+# ---------------------------------------------------------------------------
+# Useful when porting a design from one palette to another. Read across a row.
+#
+#   role            rose-pine      gruvbox          everforest   kanagawa(wave)  catppuccin
+#   ------------    -------------  ---------------  -----------  --------------  ----------
+#   background      base           dark0/light0     bg0          ui.bg           base
+#   raised bg       surface        dark0_soft       bg1          ui.bg_p1        mantle/surface0
+#   popup bg        overlay        dark1            bg2          ui.bg_m3        surface0
+#   body text       text           light1/dark1     fg           ui.fg           text
+#   dim text        subtle         light4/dark4     grey2        ui.fg_dim       subtext0
+#   comment         muted          gray             grey1        fujiGray        overlay0
+#   error / delete  love           red              red          samuraiRed      red
+#   warning         gold           yellow           yellow       roninYellow     yellow
+#   success / add   pine (or leaf) green            green        autumnGreen     green
+#   info / link     foam           aqua             aqua         dragonBlue      sky/sapphire
+#   primary accent  pine           blue             blue         crystalBlue     blue
+#   secondary       iris           purple           purple       oniViolet       mauve
+#   tertiary        rose           orange           orange       surimiOrange    peach
+#   selection bg    highlight_med  dark2/light2     bg_visual    ui.bg_visual    surface1
+#   cursorline      highlight_low  dark0_soft       bg1          ui.bg_p2        surface0
+#   border          highlight_high dark3/light3     bg5          ui.bg_p2        surface2
+
+# ---------------------------------------------------------------------------
+# Derived palette: ActivityWatch category colors  (OFFICIAL — 2026-09-09)
+# ---------------------------------------------------------------------------
+# Canonical source for the 16 ActivityWatch categories. Mirrored into
+# aw-category-export.json (importable) and live in the aw-server settings.
+#
+# TWO CONSTRAINTS DRIVE EVERYTHING HERE:
+#
+# 1. Category colors are TEXT BACKGROUNDS, not accents.
+#    aw-webui's src/visualizations/summary.ts hardcodes `const textColor =
+#    '#333'` and paints every bar label in it, regardless of fill and
+#    regardless of light/dark theme. Rosé Pine accents used as fills give #333
+#    only 2.0-4.8:1 — unreadable. A legible fill needs luminance >= ~0.45.
+#
+# 2. Low chroma limits how many colors can coexist.
+#    At the saturation of "london sands" (.22) / "butterfly kisses" (.13) from
+#    obsidian/00_fleeting/pastel_schemes.md, 16 mutually distinct colors do not
+#    fit. So the budget follows actual usage: Work's children (kitty, zen,
+#    obsidian, LLM) dominate the chart and carry the hue separation; Media and
+#    Comms are slivers and recede into quiet greige ladders separated by
+#    lightness.
+#
+# Verified:
+#   worst label contrast (#333 on fill)     4.95:1  (WCAG AA text = 4.5:1)
+#   min deltaE among categories in daily use  11.6
+#   mean saturation                          0.26   (london sands .22)
+#   remaining tight pairs                    5, all near-white slivers
+#
+# Yellow-green (~60-100 deg) is avoided outright; it read sickly at these
+# lightnesses in an earlier revision.
+#
+activitywatch-categories:
+  note: >
+    Fills carry dark #333 labels, so these are backgrounds, not accents.
+    Do not swap in rose-pine accent hexes — see the header above.
+  label_color: "#333333"          # hardcoded in aw-webui summary.ts
+  min_fill_luminance: 0.45
+  inspired_by: ["london sands", "butterfly kisses"]
+
+  work:                             # carries the colour — slate / teal / lavender / clay
+    Work:                   "#a4b5ca"
+    Work > Code:            "#cddce7"
+    Work > Zen:             "#a7d1d2"
+    Work > Obsidian:        "#beb5d6"
+    Work > LLM:             "#e1c6b5"
+    Work > Reading:         "#c49eba"
+
+  media:                            # quiet warm greige, separated by lightness
+    Media:                  "#dec6c8"
+    Media > Video:          "#ebdcda"
+    Media > Social Media:   "#ceafbb"
+    Media > Music:          "#f0ece2"
+
+  comms:                            # quiet sage greige, a lightness ladder
+    Comms:                  "#c6dbcc"
+    Comms > Work Comms:     "#92bfa2"
+    Comms > Meeting:        "#e8f1ea"
+    Comms > Email:          "#d9e5df"
+    Comms > Personal Comms: "#b0ceb2"
+
+  neutral:
+    Uncategorized:          "#a2a2a2"

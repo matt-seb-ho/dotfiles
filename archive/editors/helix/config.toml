@@ -1,4 +1,5 @@
-theme = "msho_gruvbox"
+# theme = "msho_gruvbox"
+theme = "rose_pine_dawn"
 
 [editor]
 line-number = "relative"

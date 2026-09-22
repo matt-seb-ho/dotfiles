@@ -1,0 +1,19 @@
+import = ["~/.config/alacritty/rose-pine-dawn.toml"]
+
+[font]
+size = 15
+
+[font.normal]
+family = "InconsolataGo Nerd Font Mono"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
+
+[window]
+decorations = "buttonless"
+
+[window.padding]
+x = 10
+y = 10

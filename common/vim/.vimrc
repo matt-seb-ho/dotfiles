@@ -15,7 +15,7 @@ set rnu
 set nu
 syntax on
 " show actual line numbers while in insert mode 
-autocmd InsertEnter * :set number 
+autocmd InsertEnter * :set number nornu
 autocmd InsertLeave * :set relativenumber
 
 " indentation, tabs -> spaces

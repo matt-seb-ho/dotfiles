@@ -1,0 +1,506 @@
+/* ===========================================================================
+   rose-pine.css — Rosé Pine Dawn theme for the ActivityWatch web UI
+   ---------------------------------------------------------------------------
+   Geometry and spacing follow shadcn/ui conventions; color comes from
+   Rosé Pine Dawn (see ../themes.yaml).
+
+   Loaded unconditionally from index.html. The dark counterpart
+   (rose-pine-moon.css) ships as `dark.css` and redefines ONLY the tokens
+   below — every rule in this file resolves through var(), so the dark theme
+   costs ~40 lines instead of upstream's 11 KB of hardcoded overrides.
+
+   Note: the web UI's CSP is `font-src 'self' data:`, so no webfont hosts.
+   System stack only.
+
+   Cascade: aw-webui ships Bootstrap 4 + BootstrapVue, so `!important` is
+   load-bearing wherever we override a Bootstrap component rule.
+   =========================================================================== */
+
+:root {
+  /* ---- Rosé Pine Dawn ---- */
+  --rp-base:      #faf4ed;
+  --rp-surface:   #fffaf3;
+  --rp-overlay:   #f2e9e1;
+  --rp-muted:     #9893a5;
+  --rp-subtle:    #797593;
+  --rp-text:      #464261;
+  --rp-love:      #b4637a;
+  --rp-gold:      #ea9d34;
+  --rp-rose:      #d7827e;
+  --rp-pine:      #286983;
+  --rp-foam:      #56949f;
+  --rp-iris:      #907aa9;
+  --rp-leaf:      #6d8f89;
+  --rp-hl-low:    #f4ede8;
+  --rp-hl-med:    #dfdad9;
+  --rp-hl-high:   #cecacd;
+
+  /* ---- shadcn-shaped semantic tokens ----
+     Deliberately named after shadcn's own tokens: if the UI is ever rebuilt
+     on shadcn-vue, this block ports across as the theme with no renaming. */
+  --background:          var(--rp-base);
+  --foreground:          var(--rp-text);
+  --card:                var(--rp-surface);
+  --card-foreground:     var(--rp-text);
+  --popover:             var(--rp-surface);
+  --popover-foreground:  var(--rp-text);
+  --primary:             var(--rp-pine);
+  --primary-foreground:  #fffaf3;
+  --secondary:           var(--rp-hl-low);
+  --secondary-foreground: var(--rp-text);
+  --muted:               var(--rp-hl-low);
+  --muted-foreground:    var(--rp-subtle);
+  --accent:              var(--rp-overlay);
+  --accent-foreground:   var(--rp-text);
+  --destructive:         var(--rp-love);
+  --destructive-foreground: #fffaf3;
+  --success:             var(--rp-leaf);
+  --warning:             var(--rp-gold);
+  --info:                var(--rp-foam);
+  --border:              var(--rp-hl-med);
+  --input:               var(--rp-hl-med);
+  --ring:                rgba(40, 105, 131, .40);
+
+  /* ---- geometry (shadcn defaults) ---- */
+  --radius:      0.5rem;
+  --radius-sm:   0.375rem;
+  --radius-lg:   0.75rem;
+  --shadow-sm:   0 1px 2px 0 rgba(70, 66, 97, .05);
+  --shadow:      0 1px 3px 0 rgba(70, 66, 97, .09), 0 1px 2px -1px rgba(70, 66, 97, .09);
+  --shadow-md:   0 4px 6px -1px rgba(70, 66, 97, .09), 0 2px 4px -2px rgba(70, 66, 97, .07);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------- base ---- */
+
+body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body, button, code, html, pre, table {
+  color: var(--foreground);
+}
+
+/* aw-webui sets Varela Round on headings; keep the sans stack instead so the
+   UI reads as one typeface family the way shadcn does. */
+h1, h2, h3, h4, h5, h6, nav {
+  font-family: var(--font-sans) !important;
+  letter-spacing: -0.011em;
+}
+h1, h2, h3 { font-weight: 600; }
+h4, h5, h6 { font-weight: 600; }
+
+code, pre, .mono { font-family: var(--font-mono); }
+
+hr { border-color: var(--border); }
+
+a { color: var(--primary); }
+a:hover { color: var(--primary); }
+
+/* Visible keyboard focus — Bootstrap 4 leans on box-shadow, which disappears
+   against a tinted ground. */
+:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* ----------------------------------------------------------- containers ---- */
+
+.aw-container {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.card {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-sm);
+}
+.card .card-header,
+.card .card-footer {
+  background-color: var(--muted) !important;
+  border-color: var(--border) !important;
+}
+
+.modal-content {
+  background-color: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-md);
+}
+.modal-content .modal-header,
+.modal-content .modal-footer {
+  border-color: var(--border) !important;
+}
+
+.bg-light { background-color: var(--muted) !important; }
+
+/* -------------------------------------------------------------- navbar ---- */
+
+.aw-navbar {
+  background-color: var(--card) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: none !important;
+}
+
+.navbar-brand span { color: var(--foreground) !important; }
+
+.nav-item a.nav-link { color: var(--muted-foreground) !important; }
+
+.nav-item:hover { background-color: transparent !important; }
+
+ul.nav li.nav-item a.nav-link:hover,
+ul.nav li.nav-item a.nav-link:hover h6 {
+  color: var(--foreground) !important;
+  background-color: var(--accent) !important;
+  border-radius: var(--radius-sm);
+}
+
+ul.nav li.nav-item a.nav-link.router-link-exact-active,
+ul.nav li.nav-item a.nav-link.router-link-exact-active:hover {
+  color: var(--primary) !important;
+  background-color: var(--accent) !important;
+  border-radius: var(--radius-sm);
+}
+
+.nav .nav-item .nav-link h6 { color: inherit !important; }
+
+.nav.nav-tabs { border-color: var(--border) !important; }
+
+.navbar-toggler-icon { filter: none; }
+
+/* Settings sidebar — shadcn treats these as ghost buttons. */
+.settings-nav .nav-link {
+  color: var(--muted-foreground) !important;
+  border-radius: var(--radius-sm);
+}
+.settings-nav .nav-link:hover {
+  background-color: var(--accent) !important;
+  color: var(--foreground) !important;
+}
+.settings-nav .nav-link.active,
+.settings-nav .nav-link.active:hover {
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
+  font-weight: 500;
+}
+
+/* ------------------------------------------------------------- buttons ---- */
+
+.btn {
+  border-radius: var(--radius-sm) !important;
+  font-weight: 500;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+.btn-primary:hover { filter: brightness(1.1); }
+
+.btn-outline-primary,
+label.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--border) !important;
+  background-color: transparent !important;
+}
+.btn-outline-primary:hover,
+label.btn-outline-primary:hover,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+}
+
+.btn-outline-secondary {
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+  background-color: transparent !important;
+}
+.btn-outline-secondary:hover {
+  background-color: var(--accent) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+.btn-outline-dark {
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+.btn-outline-dark:hover,
+.btn-outline-dark.active,
+.btn-outline-dark:not(:disabled):not(.disabled).active,
+.btn-outline-dark:not(:disabled):not(.disabled):active {
+  background-color: var(--secondary) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+.btn-warning,
+.btn-outline-warning,
+label.btn-outline-warning {
+  color: var(--warning) !important;
+  border-color: var(--border) !important;
+  background-color: transparent !important;
+}
+.btn-outline-warning:not(:hover) { background-color: transparent !important; }
+.btn-warning:hover,
+.btn-outline-warning:hover {
+  background-color: var(--warning) !important;
+  color: var(--rp-base) !important;
+  border-color: var(--warning) !important;
+}
+
+.btn-outline-danger,
+label.btn-outline-danger {
+  color: var(--destructive) !important;
+  border-color: var(--border) !important;
+  background-color: transparent !important;
+}
+.btn-outline-danger:hover {
+  background-color: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+  border-color: var(--destructive) !important;
+}
+
+.kebab-dropdown > .btn {
+  color: var(--muted-foreground) !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+.kebab-dropdown.show > .btn,
+.kebab-dropdown > .btn:focus,
+.kebab-dropdown > .btn:hover {
+  background-color: var(--accent) !important;
+  color: var(--foreground) !important;
+}
+
+/* --------------------------------------------------- forms and controls ---- */
+
+.custom-select,
+.form-control,
+select {
+  background-color: var(--card) !important;
+  border: 1px solid var(--input) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--foreground) !important;
+  box-shadow: var(--shadow-sm);
+}
+.form-control::placeholder { color: var(--muted-foreground) !important; opacity: 1; }
+.form-control:focus,
+.custom-select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--ring) !important;
+}
+
+.input-group-text,
+.input-group-append button {
+  background-color: var(--muted) !important;
+  border-color: var(--input) !important;
+  color: var(--muted-foreground) !important;
+}
+
+.custom-file-label,
+.card .custom-file label:after {
+  background-color: var(--card) !important;
+  border-color: var(--input) !important;
+  color: var(--foreground) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.input-time-interval .btn-group .btn-light,
+.timeline-filters-panel {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+.input-time-interval .btn-group input[type=radio]:checked + label {
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
+  border-color: var(--border) !important;
+}
+
+/* ------------------------------------------------ popovers and overlays ---- */
+
+.dropdown-menu {
+  background-color: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: 0.25rem !important;
+}
+.dropdown-menu .dropdown-item {
+  color: var(--popover-foreground) !important;
+  border-radius: var(--radius-sm) !important;
+}
+.dropdown-menu .dropdown-item:hover {
+  background-color: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+}
+.dropdown-menu .dropdown-item .text-danger,
+.dropdown-menu .dropdown-item.text-danger { color: var(--destructive) !important; }
+.dropdown-menu .dropdown-item .text-danger:hover,
+.dropdown-menu .dropdown-item.text-danger:hover {
+  background-color: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+}
+
+/* Bootstrap popovers render each layer separately; all four need the token. */
+.popover {
+  background-color: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.popover .popover-header {
+  background-color: var(--muted) !important;
+  border-color: var(--border) !important;
+  color: var(--popover-foreground) !important;
+}
+.popover .popover-body { color: var(--popover-foreground) !important; }
+.popover .arrow:before { border-color: transparent; }
+.popover .arrow:after,
+.popover.bs-popover-auto[x-placement^=bottom] .arrow:after,
+.popover.bs-popover-bottom .arrow:after {
+  border-bottom-color: var(--popover) !important;
+}
+
+.tooltip .tooltip-inner {
+  background-color: var(--rp-text) !important;
+  color: var(--rp-base) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: .78rem;
+}
+.tooltip .arrow:before { border-top-color: var(--rp-text) !important; }
+
+.vis-tooltip {
+  background-color: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--popover-foreground) !important;
+  box-shadow: var(--shadow-md) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* --------------------------------------------------- tables and lists ---- */
+
+.table,
+[class*=table-responsive-] > .table {
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+.table *,
+[class*=table-responsive-] > .table * {
+  border-color: var(--border) !important;
+}
+.table thead th {
+  color: var(--muted-foreground) !important;
+  font-weight: 500;
+  font-size: .82rem;
+  letter-spacing: .02em;
+  border-bottom: 1px solid var(--border) !important;
+}
+.table-hover tbody tr:hover,
+.table.b-table.table-hover tbody tr:hover,
+[class*=table-responsive-] > .table tr:hover:not(thead tr) {
+  background-color: var(--accent) !important;
+  color: var(--foreground) !important;
+}
+[class*=table-responsive-] > .table .btn-outline-secondary {
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+[aria-sort=none],
+[aria-sort=ascending],
+[aria-sort=descending] { color: var(--foreground) !important; }
+
+.list-group-item,
+.event-list li,
+.field {
+  background-color: var(--card) !important;
+  border-color: var(--border) !important;
+  color: var(--foreground) !important;
+}
+
+.row.class:hover,
+.category-builder-word:hover > *,
+.stopwatch-entry:hover {
+  background-color: var(--accent) !important;
+}
+.category-builder-word .table td,
+.category-builder-word .table th { border-color: var(--border) !important; }
+
+.bucket-card--unknown { background-color: var(--muted) !important; }
+
+/* --------------------------------------------------------- timeline ---- */
+
+.vis-panel.vis-left *,
+.vis-time-axis.vis-foreground * {
+  color: var(--muted-foreground) !important;
+  border-color: var(--border) !important;
+}
+
+.timeline-chip {
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border) !important;
+}
+.timeline-chip--clickable:hover { background-color: var(--accent) !important; }
+
+/* SVG chart text takes the theme foreground — category fills come from the
+   palette in settings and are deliberately left alone (see themes.yaml:
+   one color per category, must read on both grounds). */
+svg text { fill: var(--foreground) !important; }
+svg#timespiral text,
+svg#timespiral textPath { fill: var(--foreground) !important; }
+
+/* ---------------------------------------------------------- alerts ---- */
+
+.alert-success {
+  background-color: var(--rp-hl-low) !important;
+  border-color: var(--success) !important;
+  color: var(--foreground) !important;
+}
+.alert-info {
+  background-color: var(--rp-hl-low) !important;
+  border-color: var(--info) !important;
+  color: var(--foreground) !important;
+}
+.alert-warning {
+  background-color: var(--rp-hl-low) !important;
+  border-color: var(--warning) !important;
+  color: var(--foreground) !important;
+}
+.alert-danger {
+  background-color: var(--rp-hl-low) !important;
+  border-color: var(--destructive) !important;
+  color: var(--foreground) !important;
+}
+.alert { border-radius: var(--radius) !important; border-left-width: 3px !important; }
+.alert-danger a, .alert-info a, .alert-success a, .alert-warning a {
+  color: var(--primary) !important;
+  text-decoration: underline;
+}
+.alert-danger a:hover, .alert-info a:hover,
+.alert-success a:hover, .alert-warning a:hover { color: var(--primary) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

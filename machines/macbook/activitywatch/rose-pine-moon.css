@@ -1,0 +1,88 @@
+/* ===========================================================================
+   rose-pine-moon.css — dark counterpart to rose-pine.css
+   ---------------------------------------------------------------------------
+   Installed as the web UI's `dark.css`, which aw-webui injects at runtime
+   (App.vue appends <link href="/dark.css"> when the theme resolves to dark).
+   It therefore lands AFTER rose-pine.css in the cascade and wins on :root.
+
+   This file is tokens only. Every visual rule lives in rose-pine.css and
+   resolves through var(), so switching grounds is a palette swap — not the
+   11 KB of per-component !important overrides upstream's dark.css needs.
+
+   Keep AW's theme setting on `auto` (or `dark`) for this to load at all.
+   =========================================================================== */
+
+:root {
+  /* ---- Rosé Pine Moon ---- */
+  --rp-base:      #232136;
+  --rp-surface:   #2a273f;
+  --rp-overlay:   #393552;
+  --rp-muted:     #6e6a86;
+  --rp-subtle:    #908caa;
+  --rp-text:      #e0def4;
+  --rp-love:      #eb6f92;
+  --rp-gold:      #f6c177;
+  --rp-rose:      #ea9a97;
+  --rp-pine:      #3e8fb0;
+  --rp-foam:      #9ccfd8;
+  --rp-iris:      #c4a7e7;
+  --rp-leaf:      #95b1ac;
+  --rp-hl-low:    #2a283e;
+  --rp-hl-med:    #44415a;
+  --rp-hl-high:   #56526e;
+
+  /* ---- semantic tokens ----
+     Roles that invert on a dark ground are respelled here; the rest inherit
+     their meaning from the Moon ramp above. */
+  --background:          var(--rp-base);
+  --foreground:          var(--rp-text);
+  --card:                var(--rp-surface);
+  --card-foreground:     var(--rp-text);
+  --popover:             var(--rp-overlay);
+  --popover-foreground:  var(--rp-text);
+  --primary:             var(--rp-pine);
+  --primary-foreground:  #191724;   /* dark ink on a mid-tone pine reads far
+                                       better than light ink would */
+  --secondary:           var(--rp-hl-low);
+  --secondary-foreground: var(--rp-text);
+  --muted:               var(--rp-hl-low);
+  --muted-foreground:    var(--rp-subtle);
+  --accent:              var(--rp-overlay);
+  --accent-foreground:   var(--rp-text);
+  --destructive:         var(--rp-love);
+  --destructive-foreground: #191724;
+  --success:             var(--rp-leaf);
+  --warning:             var(--rp-gold);
+  --info:                var(--rp-foam);
+  --border:              var(--rp-hl-med);
+  --input:               var(--rp-hl-med);
+  --ring:                rgba(156, 207, 216, .38);
+
+  /* Shadows carry less on a dark ground; lean on borders instead and keep
+     these deep rather than merely tinted. */
+  --shadow-sm:   0 1px 2px 0 rgba(0, 0, 0, .28);
+  --shadow:      0 1px 3px 0 rgba(0, 0, 0, .38), 0 1px 2px -1px rgba(0, 0, 0, .38);
+  --shadow-md:   0 4px 10px -2px rgba(0, 0, 0, .48), 0 2px 6px -3px rgba(0, 0, 0, .40);
+
+  color-scheme: dark;
+}
+
+/* The three places the light sheet hardcodes a Dawn value rather than a token,
+   because the role genuinely inverts. */
+.tooltip .tooltip-inner {
+  background-color: var(--rp-overlay) !important;
+  color: var(--rp-text) !important;
+}
+.tooltip .arrow:before { border-top-color: var(--rp-overlay) !important; }
+
+.btn-warning:hover,
+.btn-outline-warning:hover { color: #191724 !important; }
+
+/* aw-webui paints a few chart and panel fills as literal light greys inline;
+   these are the inline-style hooks upstream's dark.css also has to catch. */
+svg path[style="fill: rgb(255, 255, 255);"] { fill: var(--rp-surface) !important; }
+svg.appsummary g rect[style="fill: rgb(204, 204, 204);"] { fill: var(--rp-hl-high) !important; }
+svg.appsummary g rect[style="fill: rgb(184, 184, 184);"] { fill: var(--rp-hl-med) !important; }
+div[style="background-color: rgb(238, 238, 238);"] { background-color: var(--rp-hl-low) !important; }
+div[style="color: rgb(85, 85, 85); font-size: 0.9em;"] { color: var(--rp-subtle) !important; }
+.navbar-toggler-icon { filter: invert(1) hue-rotate(180deg); }
