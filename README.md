@@ -33,6 +33,7 @@ The shared active configs are:
 - `common/fzf/default_opts.txt`
 - `common/keyd/` for the Linux keyd mappings used by the Sway machines.
 - `common/themes.yaml`
+- `common/home-layout/HOME_LAYOUT.md` for the `~` folder layout and the rules for the research and lab machines.
 
 The MacBook copies were refreshed from the live files at these paths:
 
