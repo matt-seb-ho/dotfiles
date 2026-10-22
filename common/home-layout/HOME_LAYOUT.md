@@ -13,14 +13,19 @@ a machine, copy or symlink it to `~/HOME_LAYOUT.md` and point `~/CLAUDE.md` (or
 ├── projects/          # active research projects, one folder per project
 │   └── <project>/     # a repo, or a plain parent folder holding several repos
 ├── research-agenda/   # agenda thinking, reading notes, proposal drafts
-├── phd/
+├── phd/               # private machine only
 │   ├── milestones/    # research exam, thesis proposal, defense
-│   ├── coursework/    # one folder per course
 │   └── admin/         # fellowships, applications, forms
+├── coursework/        # lab servers only: one folder per active course
 ├── refs/              # third-party repos cloned only to read
 ├── archive/           # finished or abandoned work, compressed when cold
 └── misc/              # anything that fits nowhere else; keep it small
 ```
+
+Coursework is done on lab servers, so it gets a top-level `coursework/`
+there; `phd/` holds private material and lives only on the private machine.
+Delete a course folder once the course or TA-ship is over (push any code
+worth keeping first).
 
 Not every machine needs every folder. Create one only when something goes in
 it. A machine-specific folder (scratch, a mounted dataset) is fine as long as
@@ -41,9 +46,14 @@ it is listed in that machine's notes below.
   `<name>.tar.zst` (`zstd --ultra -22 --long=27`) and add a short README or a
   log line saying what's inside. Before deleting the original, check that the
   file count in the archive matches.
+- **Keep bulk out of repos instead of moving repos.** Put outputs, data and
+  checkpoints in `/data/<user>/<project>/` (or a fast scratch disk) and leave a
+  gitignored symlink in the repo. The repo path stays the same, so running
+  agent sessions and git worktrees don't break.
 - **Moving a folder orphans its Claude Code history.** Session history lives in
   `~/.claude/projects/<path with / and _ turned into ->`. Rename that folder to
-  match the new path.
+  match the new path, and run `git worktree repair` if the repo has worktrees.
+  Never move a folder while a session is running in it.
 
 ## Shared lab servers vs the personal machine
 
@@ -55,6 +65,8 @@ are usually world-readable (755). Admins can read everything regardless.
 - **Never on lab servers:** personal documents, PhD admin and correspondence
   (committee emails, fellowship applications), finances, secrets (`.env`, keys,
   tokens), or Claude session transcripts that came from the private machine.
+- **Secrets are owner-only.** `chmod 600` every `.env` and token file, since
+  home folders are readable by everyone.
 - **Bulky data goes in `/data/<user>/`, not `~`.** Home partitions on lab
   servers tend to be nearly full. Check `df -h` before writing anything large.
 - **Offloading from the private machine** goes into a mode-700 folder,
